@@ -1,0 +1,25 @@
+{% extends "menu.html" %}
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/madb.css')}}" >
+    {% endblock %}
+
+    {% block mybody %}
+        {% for myliste in mydbliste %}
+       <div id="general">flask run
+        <div id="tableau">
+                {% for val in myliste%}
+                    <div id="ligne"><button id="mybutton" onclick="clicme('{{val}}')">{{val|formater_date}}</button></div>
+
+            {%endfor%}
+                        </div>
+         {%endfor%}
+        </div>
+
+<script type="text/javascript">
+
+function clicme(val)
+	{
+        alert("la valeur aest :"+ val)
+	}
+</script>
+    {%endblock%}

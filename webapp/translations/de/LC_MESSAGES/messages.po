@@ -1,0 +1,132 @@
+# German translations for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-09-25 14:43+0200\n"
+"PO-Revision-Date: 2019-09-24 16:34+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+#: webapp/extension.py:15
+msgid "Please log in to access this page."
+msgstr ""
+
+#: webapp/auth/form.py:7
+msgid "User"
+msgstr "User"
+
+#: webapp/auth/form.py:8 webapp/auth/form.py:18
+msgid "Password"
+msgstr "Password"
+
+#: webapp/auth/form.py:9
+msgid "Remember me"
+msgstr "Behalte mich in Erinnerung"
+
+#: webapp/auth/form.py:10
+msgid "Connect"
+msgstr "Verbinden"
+
+#: webapp/auth/form.py:14
+msgid " Email"
+msgstr ""
+
+#: webapp/auth/form.py:15
+msgid "Request Password Reset"
+msgstr "Fordere Passwort-Reset an"
+
+#: webapp/auth/form.py:19
+msgid "Password Confirmation"
+msgstr "Passwort Bestätigung"
+
+#: webapp/auth/form.py:20 webapp/templates/auth/resetPassword.html:5
+#: webapp/templates/auth/resetPassword.html:7
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
+
+#: webapp/templates/index.html:3
+msgid "Hello"
+msgstr "Hallo"
+
+#: webapp/templates/menu.html:9
+msgid "Welcome to Microblog"
+msgstr ""
+
+#: webapp/templates/menu.html:19
+msgid "Home"
+msgstr ""
+
+#: webapp/templates/menu.html:20
+msgid "Database"
+msgstr ""
+
+#: webapp/templates/menu.html:21
+msgid "My List"
+msgstr ""
+
+#: webapp/templates/auth/login.html:4 webapp/templates/menu.html:25
+msgid "Connection"
+msgstr "Verbindung"
+
+#: webapp/templates/menu.html:27
+msgid "Disconnect"
+msgstr ""
+
+#: webapp/templates/menu.html:30
+msgid "Choose a Language"
+msgstr ""
+
+#: webapp/templates/menu.html:33
+msgid "--Please choose an option--"
+msgstr ""
+
+#: webapp/templates/menu.html:34
+msgid "french"
+msgstr ""
+
+#: webapp/templates/menu.html:35
+msgid "English"
+msgstr ""
+
+#: webapp/templates/menu.html:36
+msgid "Deutch"
+msgstr ""
+
+#: webapp/templates/auth/login.html:27
+msgid "Forgoten Password"
+msgstr "Passwort vergessen"
+
+#: webapp/templates/auth/login.html:28
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: webapp/templates/auth/newMDP.html:3
+msgid "Reset Password Request"
+msgstr "Passwortanfrage zurücksetzen"
+
+#~ msgid "Welcome to Microblog"
+#~ msgstr "Willkommen bei Microblog"
+
+#~ msgid "Home"
+#~ msgstr "Zuhause"
+
+#~ msgid "Database"
+#~ msgstr "Datenbank"
+
+#~ msgid "My List"
+#~ msgstr ""
+
+#~ msgid "Disconnect"
+#~ msgstr "Trennen"
+

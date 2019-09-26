@@ -1,0 +1,20 @@
+#general{
+display: flex;
+flex-direction: column;
+width :900px;
+}
+
+#tableau{
+display: flex;
+flex-direction: row;
+padding:10px;
+float:left;border-style:double;
+border-color:blue
+
+}
+
+#mybutton{
+background-color: white;
+color: black;
+border: 2px solid #4CAF50;
+}

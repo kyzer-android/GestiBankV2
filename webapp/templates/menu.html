@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html >
+
+
+<script>
+function LangueFonction(value) {
+  var str = document.URL;
+  var n = str.search("lang");
+
+   if (n != -1){
+         var url_debut = str.substring(0,n+5);
+         var url_fin = str.substring(n+7);
+         var final_url=url_debut+value+url_fin;
+         }
+    else { var final_url=document.URL+"?lang="+value;}
+         location.href =final_url;
+}
+</script>
+    <head>
+
+        <meta charset="UTF-8">
+        {%if title %}
+            <title>Microblog - {{ title }}</title>
+        {% else %}
+            <title>{{_('Welcome to Microblog')}}</title>
+        {% endif %}
+        {% block css %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/style.css')}}" >
+    </head>
+
+    Microdsqblog:
+     </br>
+    <body>
+    <div id="cadre" style="static;">
+        <div class="ligne" style=";border-color:purple">  <a href='{{url_for("main.index")}}'>{{_('Home')}}</a></div>
+         <div class="ligne" style=";border-color:green">  <a href='{{url_for("main.madb")}}'>{{_('Database')}}</a></div>
+         <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.maliste")}}'>{{_('My List')}}</a></div>
+        <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.inscription")}}'>{{_('Registration')}}</a></div>
+    </div>
+
+        {% if current_user.is_anonymous %}
+         <div id="connexion" style="border-color:red;"><a href='{{url_for("auth.login")}}'>{{_('Connection')}}</a></div>
+        {% else %}
+        <div id="connexion" style="border-color:black;"><a href='{{url_for("auth.logout")}}'>{{_('Disconnect')}}</a></div>
+        {%endif%}
+        <div id="langue">
+            <label for="pet-select">{{_('Choose a Language')}}:</label>
+
+            <select id="pet-select" onchange="LangueFonction(value)">
+                <option value="">{{_('--Please choose an option--')}}</option>
+                <option value="fr">{{_('french')}}</option>
+                <option value="en">{{_('English')}}</option>
+                <option value="de">{{_('Deutch')}}</option>
+            </select>
+
+        </div>
+
+
+    </br> </br> </br>
+
+    <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                     <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    {% block mybody %}{% endblock %}
+    </body>
+</html>
+

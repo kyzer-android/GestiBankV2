@@ -1,0 +1,2 @@
+FLASK_APP=gestibank.py
+FLASK_DEBUG=1
