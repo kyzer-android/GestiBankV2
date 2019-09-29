@@ -32,10 +32,21 @@ function LangueFonction(value) {
      </br>
     <body>
     <div id="cadre" style="static;">
-        <div class="ligne" style=";border-color:purple">  <a href='{{url_for("main.index")}}'>{{_('Home')}}</a></div>
-         <div class="ligne" style=";border-color:green">  <a href='{{url_for("main.madb")}}'>{{_('Database')}}</a></div>
-         <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.maliste")}}'>{{_('My List')}}</a></div>
-        <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.inscription")}}'>{{_('Registration')}}</a></div>
+        {% if current_user.is_anonymous %}
+            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("main.index")}}'>{{_('Home')}}</a></div>
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.inscription")}}'>{{_('Registration')}}</a></div>
+        {%endif%} {% if current_user.type=='admin' %}
+            <div class="ligne" style=";border-color:blue">  <a href="{{url_for('gestibank.admin', param=1)}}">{{_('Gestion des Agents')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href="{{url_for('gestibank.admin',param=2)}}">{{_('Gestion des Demandes')}}</a></div>
+         {%endif%} {% if current_user.type=='agent' %}
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.agent",param=1)}}'>{{_('Gestion des Clients')}}</a></div>
+        <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.agent",param=2)}}'>{{_('Gestion des Demandes')}}</a></div>
+        {%endif%} {% if current_user.type=='client' %}
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=1)}}'>{{_('Historique des comptes')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=2)}}'>{{_('virement')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=3)}}'>{{_('Other')}}</a></div>
+        {%endif%}
+
     </div>
 
         {% if current_user.is_anonymous %}

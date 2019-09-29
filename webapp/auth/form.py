@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, Email, EqualTo
+from wtforms.validators import DataRequired, Email, EqualTo, Length
 from flask_babel import lazy_gettext as _l
 
 class LoginForm(FlaskForm):
@@ -15,6 +15,6 @@ class ResetPasswordRequestForm(FlaskForm):
     submit = SubmitField(_l('Request Password Reset'))
 
 class ResetPasswordForm(FlaskForm):
-    password = PasswordField(_l('Password'), validators=[DataRequired()])
+    password = PasswordField(_l('Password'), validators=[DataRequired(),Length(min=8, max=25)])
     password2 = PasswordField(_l('Password Confirmation'),validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField(_l('Reset Password'))

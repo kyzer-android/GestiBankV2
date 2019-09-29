@@ -8,6 +8,11 @@ def register(app):
         """Translation and localization commands."""
         pass
 
+    @app.cli.group()
+    def Servermail():
+        """Server Mail"""
+        pass
+
     @translate.command()
     def update():
         """Update all languages."""
@@ -33,3 +38,8 @@ def register(app):
                 'pybabel init -i messages.pot -d webapp/translations -l ' + lang):
             raise RuntimeError('init command failed')
         os.remove('messages.pot')
+
+    @Servermail.command()
+    def run():
+        if os.system('python -m smtpd -n -c DebuggingServer 127.0.0.1:8025'):
+            raise RuntimeError('extract command failed')

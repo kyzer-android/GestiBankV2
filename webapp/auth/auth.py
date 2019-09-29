@@ -1,11 +1,11 @@
 from datetime import date
 
-from flask import render_template, url_for, redirect, flash, Blueprint, request
+from flask import render_template, url_for, redirect, flash, request
 from flask_login import current_user, login_user, logout_user
 from werkzeug.urls import url_parse
 
 from webapp.auth.email import send_password_reset_email
-from webapp.main.models import User
+from webapp.gestibank.models import User
 from webapp import db
 from webapp.auth.form import LoginForm, ResetPasswordRequestForm, ResetPasswordForm
 from webapp.auth import bp
@@ -22,10 +22,12 @@ def login():
             flash('Login ou mot de passe invalide')
             return redirect(url_for('auth.login'))
         login_user(utilisateur, remember=formulaire.remember_me.data)
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('main.index')
-        return redirect(next_page)
+        if utilisateur.type == 'client':
+            return redirect(url_for('gestibank.client',param=0))
+        elif utilisateur.type == 'agent':
+            return redirect(url_for('gestibank.agent',param=0))
+        elif utilisateur.type == 'admin':
+            return redirect(url_for('gestibank.admin',param=0))
     return render_template('auth/login.html', title='login', form=formulaire)
 
 
@@ -65,7 +67,7 @@ def reset_password(token):
     else:
         formulaire = ResetPasswordForm()
         if formulaire.validate_on_submit():
-           if user.set_pwd(formulaire.password.data):
+           if user.set_pwd(formulaire.password2.data):
                 db.session.commit()
                 flash('nouveau MDP')
                 return redirect(url_for("main.index"))

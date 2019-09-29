@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-25 14:43+0200\n"
+"POT-Creation-Date: 2019-09-29 22:45+0200\n"
 "PO-Revision-Date: 2019-09-24 16:34+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Request Password Reset"
 msgstr "Fordere Passwort-Reset an"
 
-#: webapp/auth/form.py:19
+#: webapp/auth/form.py:19 webapp/gestibank/form.py:10
 msgid "Password Confirmation"
 msgstr "Passwort Bestätigung"
 
@@ -55,51 +55,115 @@ msgstr "Passwort Bestätigung"
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
+#: webapp/gestibank/CompteBancaire.py:41
+msgid "Insertion Problem"
+msgstr ""
+
+#: webapp/gestibank/form.py:8
+msgid "Connexion identifier"
+msgstr ""
+
+#: webapp/gestibank/form.py:9
+msgid "password"
+msgstr ""
+
+#: webapp/gestibank/form.py:11
+msgid "FirstName"
+msgstr ""
+
+#: webapp/gestibank/form.py:12
+msgid "Surname"
+msgstr ""
+
+#: webapp/gestibank/form.py:13
+msgid "Email"
+msgstr ""
+
+#: webapp/gestibank/form.py:14
+msgid "Phone number"
+msgstr ""
+
+#: webapp/gestibank/form.py:15
+msgid "Adresse"
+msgstr ""
+
+#: webapp/gestibank/form.py:16
+msgid "Justificatif"
+msgstr ""
+
+#: webapp/gestibank/form.py:17
+msgid "Send"
+msgstr ""
+
+#: webapp/gestibank/models.py:74
+msgid "This password has allredy been used"
+msgstr ""
+
 #: webapp/templates/index.html:3
 msgid "Hello"
 msgstr "Hallo"
 
-#: webapp/templates/menu.html:9
+#: webapp/templates/menu.html:25
 msgid "Welcome to Microblog"
 msgstr ""
 
-#: webapp/templates/menu.html:19
+#: webapp/templates/menu.html:36
 msgid "Home"
 msgstr ""
 
-#: webapp/templates/menu.html:20
-msgid "Database"
+#: webapp/templates/menu.html:37
+msgid "Registration"
 msgstr ""
 
-#: webapp/templates/menu.html:21
-msgid "My List"
+#: webapp/templates/menu.html:39
+msgid "Gestion des Agents"
 msgstr ""
 
-#: webapp/templates/auth/login.html:4 webapp/templates/menu.html:25
+#: webapp/templates/menu.html:40 webapp/templates/menu.html:43
+msgid "Gestion des Demandes"
+msgstr ""
+
+#: webapp/templates/menu.html:42
+msgid "Gestion des Clients"
+msgstr ""
+
+#: webapp/templates/menu.html:45
+msgid "Historique des comptes"
+msgstr ""
+
+#: webapp/templates/menu.html:46
+msgid "virement"
+msgstr ""
+
+#: webapp/templates/menu.html:47
+msgid "Other"
+msgstr ""
+
+#: webapp/templates/auth/login.html:4 webapp/templates/menu.html:53
 msgid "Connection"
 msgstr "Verbindung"
 
-#: webapp/templates/menu.html:27
+#: webapp/templates/menu.html:55
 msgid "Disconnect"
 msgstr ""
 
-#: webapp/templates/menu.html:30
+#: webapp/templates/menu.html:58
 msgid "Choose a Language"
 msgstr ""
 
-#: webapp/templates/menu.html:33
+#: webapp/templates/menu.html:61
 msgid "--Please choose an option--"
 msgstr ""
 
-#: webapp/templates/menu.html:34
+#: webapp/templates/menu.html:62
 msgid "french"
 msgstr ""
 
-#: webapp/templates/menu.html:35
+#: webapp/templates/menu.html:63
 msgid "English"
 msgstr ""
 
-#: webapp/templates/menu.html:36
+#: webapp/templates/menu.html:64
 msgid "Deutch"
 msgstr ""
 
@@ -115,6 +179,59 @@ msgstr "Zurücksetzen"
 msgid "Reset Password Request"
 msgstr "Passwortanfrage zurücksetzen"
 
+#: webapp/templates/gestibank/admin.html:5
+msgid "Crée un agent"
+msgstr ""
+
+#: webapp/templates/gestibank/admin.html:6
+msgid "Modifier un agent"
+msgstr ""
+
+#: webapp/templates/gestibank/admin.html:8
+msgid "Lister Toutes demande"
+msgstr ""
+
+#: webapp/templates/gestibank/admin.html:9
+msgid "Lister les demande non affecter"
+msgstr ""
+
+#: webapp/templates/gestibank/agent.html:5
+msgid "liste des clients"
+msgstr ""
+
+#: webapp/templates/gestibank/agent.html:6
+#: webapp/templates/gestibank/client.html:11
+msgid "demande de chequier"
+msgstr ""
+
+#: webapp/templates/gestibank/agent.html:8
+msgid "Lister nouvelles  demande"
+msgstr ""
+
+#: webapp/templates/gestibank/agent.html:9
+msgid "Lister les demande  en attente de confirmation"
+msgstr ""
+
+#: webapp/templates/gestibank/client.html:5
+msgid "lister les operation par mois"
+msgstr ""
+
+#: webapp/templates/gestibank/client.html:6
+msgid "????"
+msgstr ""
+
+#: webapp/templates/gestibank/client.html:8
+msgid "historique des virements"
+msgstr ""
+
+#: webapp/templates/gestibank/client.html:9
+msgid "Effectuer un virement"
+msgstr ""
+
+#: webapp/templates/gestibank/client.html:12
+msgid "imprimer des transaction"
+msgstr ""
+
 #~ msgid "Welcome to Microblog"
 #~ msgstr "Willkommen bei Microblog"
 
@@ -122,11 +239,17 @@ msgstr "Passwortanfrage zurücksetzen"
 #~ msgstr "Zuhause"
 
 #~ msgid "Database"
-#~ msgstr "Datenbank"
+#~ msgstr ""
 
 #~ msgid "My List"
 #~ msgstr ""
 
 #~ msgid "Disconnect"
 #~ msgstr "Trennen"
+
+#~ msgid "password confirmation"
+#~ msgstr ""
+
+#~ msgid "Registration Validate"
+#~ msgstr ""
 

@@ -5,7 +5,7 @@ from webapp.extension import db, migrate, login, mail, babel
 from webapp.main import bp as main_bp
 from webapp.auth import bp as auth_bp
 from webapp.api import bp as api_bp
-
+from webapp.gestibank import bp as gesti_bp
 def create_app(config_class=Config):
     app = Flask(__name__)
 
@@ -18,6 +18,7 @@ def create_app(config_class=Config):
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(api_bp)
+    app.register_blueprint(gesti_bp)
     with app.app_context():
         from webapp.main import filter
     return app

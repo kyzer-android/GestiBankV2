@@ -1,0 +1,13 @@
+{% extends "menu.html" %}
+{% block mybody %}
+    <div id="cadre" style="static;">
+        {% if param==1 %}
+            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("main.index")}}'>{{_('Crée un agent')}}</a></div>
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.inscription")}}'>{{_('Modifier un agent')}}</a></div>
+        {%endif%} {% if param==2 %}
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('Lister Toutes demande')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('Lister les demande non affecter')}}</a></div>
+         {%endif%}
+    </div>
+        {%block adminaction%}{% endblock %}
+{% endblock %}

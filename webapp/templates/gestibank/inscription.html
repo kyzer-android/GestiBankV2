@@ -19,7 +19,13 @@
                 <span style="color: green;">[{{ error }}]</span>
             {% endfor %}
         </p>
-
+        <p>
+            {{form.test.label}}<br>
+            {{form.test(size=32)}}
+                  {% for error in form.test.errors %}
+                <span style="color: green;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
          <p>
             {{form.nom.label}}<br>
             {{form.nom(size=32)}}

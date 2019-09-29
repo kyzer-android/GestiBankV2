@@ -10,7 +10,7 @@ def formater_date(madate):
     return madate
 
 @bp.app_template_filter('formater_date2')
-def formater_date(madate):
+def formater_date2(madate):
     if isinstance(madate,(datetime.datetime,datetime.date)):
         return madate.strftime("%d/%m/%Y")
     return madate

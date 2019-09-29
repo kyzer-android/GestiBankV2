@@ -1,0 +1,16 @@
+{% extends "menu.html" %}
+{% block mybody %}
+    <div id="cadre" style="static;">
+        {% if param==1 %}
+            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("main.index")}}'>{{_('lister les operation par mois')}}</a></div>
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.inscription")}}'>{{_('????')}}</a></div>
+        {%endif%} {% if param==2 %}
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('historique des virements')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('Effectuer un virement')}}</a></div>
+        {%endif%} {% if param==3 %}
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('demande de chequier')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('imprimer des transaction')}}</a></div>
+         {%endif%}
+    </div>
+        {%block clientaction%}{% endblock %}
+{% endblock %}
