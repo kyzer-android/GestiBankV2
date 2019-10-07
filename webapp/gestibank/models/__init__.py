@@ -120,6 +120,8 @@ class Agent(User):
         'polymorphic_identity': 'agent',
     }
 
+    
+
     # def flitre_compte(self):  # Retourne les demande de création de compte avec le id agent
     #     return self.query.filter_by(self.id)
     #
