@@ -5,6 +5,8 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_babel import lazy_gettext as _l
 
+#creation des differents objet nécessaire à l'application
+
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()

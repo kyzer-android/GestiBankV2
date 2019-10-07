@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, Length, Optional, EqualTo
 
-
+#Formulaire de demande de creation de compte utilisateur
 class InscriptionForm(FlaskForm):
     username = StringField(_l("Connexion identifier"),validators=[Length(min=8, max=25)])
     password = PasswordField(_l("password"), validators=[Length(min=8, max=25)])

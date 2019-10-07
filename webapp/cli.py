@@ -1,6 +1,7 @@
 import os
 import click
-
+#Module de définition des differentes fonction utilisable depuis le
+# terminal pour facilité l'utilisation et l'exportation du logiciel
 
 def register(app):
     @app.cli.group()

@@ -15,6 +15,7 @@ class TypeCompte(enum.Enum):
     DECOUVERT = 'Decouvert'
     INTERET = 'Interet'
 
+#Class compte definissant un compte bancaire générique qui sera hérité par les different type de compte
 
 class Comptes(db.Model):
     id_compte = db.Column(db.String(50), primary_key=True)
