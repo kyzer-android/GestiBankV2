@@ -3,7 +3,7 @@ from flask import render_template
 from flask_login import current_user
 
 from webapp.extension import login
-from webapp.gestibank.models import User
+from webapp.gestibank.models.user import User
 from webapp.main import bp
 
 #Renvoi la page d'index générale

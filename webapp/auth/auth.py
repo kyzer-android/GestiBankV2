@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, flash
 from flask_login import current_user, login_user, logout_user
 
 from webapp.auth.email import send_password_reset_email
-from webapp.gestibank.models import User
+from webapp.gestibank.models.user import User
 from webapp import db
 from webapp.auth.form import LoginForm, ResetPasswordRequestForm, ResetPasswordForm
 from webapp.auth import bp

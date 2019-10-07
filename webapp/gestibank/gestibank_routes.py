@@ -5,7 +5,7 @@ from flask_login import current_user
 
 from webapp.auth.models import login_admin_required, login_agent_required, login_client_required
 from webapp.gestibank import bp
-from webapp.gestibank.models import DemandeCreacompte
+from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 from webapp.gestibank.form import InscriptionForm
 
 #renvoi la page formulaire de demande de creation de compte

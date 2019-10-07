@@ -1,11 +1,10 @@
-# Classe Agent  héritant du compte User et contenant les methodes:
-# Valider et cree  les demande de creation de compte,filtrer les demandes d'ouvertures de comptes,
-# Configurer et modifier les comptes client, effectuer des recherche aves et sans filtres sur les compte client,
-# Afficher les opperation d'un client sur les 12 derniers mois,valider les demande de chequier et les facilité de caisses
 from webapp import db
-from webapp.gestibank.models import User
+from webapp.gestibank.models.user import User
 
-
+#Classe Agent  héritant du compte User et contenant les methodes:
+#Valider et cree  les demande de creation de compte,filtrer les demandes d'ouvertures de comptes,
+#Configurer et modifier les comptes client, effectuer des recherche aves et sans filtres sur les compte client,
+#Afficher les opperation d'un client sur les 12 derniers mois,valider les demande de chequier et les facilité de caisses
 class Agent(User):
     __tablename__ = 'agent'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
@@ -16,6 +15,8 @@ class Agent(User):
     __mapper_args__ = {
         'polymorphic_identity': 'agent',
     }
+
+
 
     # def flitre_compte(self):  # Retourne les demande de création de compte avec le id agent
     #     return self.query.filter_by(self.id)
