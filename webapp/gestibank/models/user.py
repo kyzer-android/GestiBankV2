@@ -26,7 +26,7 @@ class User(UserMixin,db.Model):
 
     #Methode de la classe User permetant la generation d'un mot de passe
     @classmethod
-    def password(self, pwd):
+    def password(cls, pwd):
         return generate_password_hash(pwd)
 
     def __repr__(self):

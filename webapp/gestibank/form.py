@@ -16,3 +16,11 @@ class InscriptionForm(FlaskForm):
     justificatif = StringField(_l("Justificatif"), validators=[Optional()])
     submit = SubmitField(_l('Send'))
 
+
+class AgentForm(FlaskForm):
+    username = StringField(_l("Connexion identifier"),validators=[Length(min=8, max=25)])
+    nom = StringField(_l("FirstName"), validators=[DataRequired()])
+    prenom = StringField(_l("Surname"), validators=[DataRequired()])
+    mail = StringField(_l("Email"), validators=[DataRequired(), Email()])
+    tel = StringField(_l("Phone number"), validators=[DataRequired(), Length(10)])
+    submit = SubmitField(_l('Send'))

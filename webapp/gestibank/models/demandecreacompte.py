@@ -1,6 +1,8 @@
 #Class demandecreacompte definissant une de damande de creation de compte  utilisateur et bancaire,
 #contenant les methode : affectation d'un agent,validation d'un compte,creation d'un comte user,ajout d'une deamande
 #a la base de données
+import logging
+
 from webapp import db
 from webapp.gestibank.models.user import User
 from webapp.gestibank.models.clients import Client
@@ -21,7 +23,7 @@ class DemandeCreacompte(db.Model):
     #fonction renvoyant les information contenut dans une demande sous forme d'une chaine de charactère
     def __repr__(self):
         test = (
-            self.id,
+            self.id_compte,
             self.username,
             self.password,
             self.nom,
@@ -30,14 +32,14 @@ class DemandeCreacompte(db.Model):
             self.tel,
             self.adresse,
             self.justificatif,
-            self.valid,
+            self.valide,
             self.affect
         )
         return str(test)
     #fonction recevant un id agent et l'affectant a la objet demande en cours
-    def affectation(self, agent):  # l'admin affect un client a un agent
-        self.affect = agent
-        db.session.commit(self)
+    def affectation(self, agent_id):  # l'admin affect un client a un agent
+        self.affect = agent_id
+        db.session.commit()
         db.session.close()
 
     # fonction recevant un boolean et l'insert dans la validation de l'objet demande en cours
@@ -46,18 +48,18 @@ class DemandeCreacompte(db.Model):
         db.session.commit(self)
         db.session.close()
     #fonction utilisant les variables de l'objet demandecrea en cours pour crée un nouelles utilisateur
-    def creation_compte_User(self):
-        user=Client(
-                  username = self.username,
-                  password_hash = self.password,
-                  nom = self.nom,
-                  prenom = self.prenom,
-                  email = self.mail,
-                  tel=self.tel,
-                  adresse=self.adresse,
-                  justificatif=self.justificatif,
-                 )
-        User.populate(user)
+    # def creation_compte_User(self):
+    #     user=Client(
+    #               username = self.username,
+    #               password_hash = self.password,
+    #               nom = self.nom,
+    #               prenom = self.prenom,
+    #               email = self.mail,
+    #               tel=self.tel,
+    #               adresse=self.adresse,
+    #               justificatif=self.justificatif,
+    #              )
+    #     User.populate(user)
     #Methode de Classe permettant l'ajout d'une nouvelle demande dans la tables demandecreacompte
     @classmethod
     def add_demande(cls,formulaire):  # Stocakge d'une demmande dans la base de donnee (table demande)

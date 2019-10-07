@@ -1,8 +1,4 @@
-from datetime import date
-
 from flask import flash, render_template
-from flask_login import current_user
-
 from webapp.auth.models import login_admin_required, login_agent_required, login_client_required
 from webapp.gestibank import bp
 from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
@@ -26,7 +22,7 @@ def inscription():
 @bp.route ('/admin/<int:param>')
 @login_admin_required
 def admin(param=None):
-        return render_template('gestibank/admin.html', title="Page Admin", param=param)
+        return render_template('gestibank/admin/index.html', title="Page Admin", param=param)
 
 
 #Renvoi la page d'index de l'Agent connecter
