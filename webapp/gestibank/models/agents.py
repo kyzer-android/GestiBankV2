@@ -19,16 +19,17 @@ class Agent(User):
         'polymorphic_identity': 'agent',
     }
 
-    def flitre_compte(self):  # Retourne les demandes de création de compte avec le id agent
-        return DemandeCreacompte.query.filter_by(self.id)
+    def filtre_compte(self):  # Retourne les demandes de création de compte avec le id agent
+        return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
+
 
     def validation_Crea(self, objet_demandecrea, valide: bool):  # Validation création d'ouverture de compte
-        DemandeCreacompte.validation(valide)
-        if DemandeCreacompte.valide is True:  # Si la demande est validé, création du compte, envoi un mail avec login/mdp + mis en True
+        objet_demandecrea.validation(valide)
+        if objet_demandecrea.valid is True:  # Si la demande est validé, création du compte, envoi un mail avec login/mdp + mis en True
             # TODO envoi de mail avec id/mdp
             # TODO création de compte banquaire
             DemandeCreacompte.creation_compte_User()
-        elif DemandeCreacompte.valide is False:  # Si la demande n'est pas valider = envoi de mail demande info + mis en False
+        elif objet_demandecrea.valid is False:  # Si la demande n'est pas valider = envoi de mail demande info + mis en False
             pass  # TODO envoi de mail avec une demande d'info supplementaire
         else:  # Erreur
             print("Erreur/En attente")

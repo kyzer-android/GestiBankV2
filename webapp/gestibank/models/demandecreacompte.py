@@ -21,7 +21,7 @@ class DemandeCreacompte(db.Model):
     #fonction renvoyant les information contenut dans une demande sous forme d'une chaine de charactère
     def __repr__(self):
         test = (
-            self.id,
+            self.id_compte,
             self.username,
             self.password,
             self.nom,
@@ -30,7 +30,7 @@ class DemandeCreacompte(db.Model):
             self.tel,
             self.adresse,
             self.justificatif,
-            self.valid,
+            self.valide,
             self.affect
         )
         return str(test)
