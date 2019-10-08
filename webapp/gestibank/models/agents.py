@@ -20,7 +20,7 @@ class Agent(User):
     }
 
 
-    def contenu_agent(self):
+    def __repr__(self):
         liste = [self.type, self.id, self.username, self.nom, self.prenom, self.email,self.tel,self.debut_contrat]
         return liste
 
