@@ -2,7 +2,7 @@
 {% block mybody %}
     <div id="cadre" style="static;">
         {% if param==1 %}
-            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("main.index")}}'>{{_('liste des clients')}}</a></div>
+            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("gestibank.listeclients")}}'>{{_('liste des clients')}}</a></div>
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.demandechequier")}}'>{{_('demande de chequier')}}</a></div>
         {%endif%} {% if param==2 %}
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.nvldemande")}}'>{{_('Lister nouvelles  demande')}}</a></div>

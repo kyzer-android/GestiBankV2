@@ -29,5 +29,9 @@ def nvldemande():
 def demandechequier():
         return render_template('gestibank/agent/demandechequier.html', title="Page demande chequier ")
 
-
+#Renvoi la liste clients
+@bp.route ('/listeclients/')
+@login_agent_required
+def listeclients():
+        return render_template('gestibank/agent/listeclients.html', title="Page demande chequier ")
 
