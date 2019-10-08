@@ -26,7 +26,9 @@ def gestion_agent():
     return render_template('gestibank/admin/gestion_agent.html', title="Page Admin" , form=formulaire)
 
 
-@bp.route ('/admin/lister_agent', methods=['get', 'post'])
+@bp.route ('/admin/modifier_agent', methods=['get', 'post'])
 @login_admin_required
-def lister_agent():
-        return render_template('gestibank/admin/list_agent.html', title="Page Admin")
+def modifier_agent():
+    agents=Admin.lister_agent()
+    return render_template('gestibank/admin/modifier_agent.html', title="Page Admin",list=agents)
+

@@ -2,6 +2,7 @@
 #Classe administrateur  héritant du compte User et contenant les methodes:
 #lister les demande de creation de compte,affecter une demande de creation de compte,
 #création,modification,supression d'un agent un compte agent
+import logging
 import random
 from datetime import date
 
@@ -45,3 +46,13 @@ class Admin(User):
         db.session.commit()
         db.session.close()
         # send_password_reset_email(agent)
+
+    @classmethod
+    def lister_agent(cls):
+        agents=Agent.query.all()
+        list_agents=[]
+        for agent in agents:
+            list_agents.append(agent.contenu_agent())
+        logging.debug(list_agents)
+        return list_agents
+

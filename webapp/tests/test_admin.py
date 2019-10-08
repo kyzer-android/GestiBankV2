@@ -1,7 +1,6 @@
 import unittest
 from webapp import create_app
 from webapp.gestibank.models.admin import Admin
-from webapp.gestibank.models.user import User
 from webapp.extension import db
 
 

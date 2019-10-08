@@ -19,6 +19,10 @@ class Agent(User):
         'polymorphic_identity': 'agent',
     }
 
+    def contenu_agent(self):
+        liste = [self.type, self.id, self.username, self.nom, self.prenom, self.email,self.tel,self.debut_contrat]
+        return liste
+
     def filtre_compte(self):  # Retourne les demandes de création de compte avec le id agent
         return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
 
