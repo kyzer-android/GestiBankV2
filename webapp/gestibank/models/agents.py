@@ -4,7 +4,7 @@
 # Afficher les opperation d'un client sur les 12 derniers mois,valider les demande de chequier et les facilité de caisses
 
 from webapp import db
-from webapp.gestibank.CompteBancaire import Comptes
+from webapp.gestibank.models.CompteBancaire import Comptes
 from webapp.gestibank.models.clients import Client
 from webapp.gestibank.models.user import User
 from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
@@ -23,13 +23,12 @@ class Agent(User):
 
     # Retourne les demandes de création de compte avec le id agent OK
     def filtre_compte(self):
-        return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id,
-                                                          DemandeCreacompte.validate != True ).all()
+        return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
 
     # Retourne les clients gérée par l'agent NOK
     def filtre_clients(self):
         return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id,
-                                                          DemandeCreacompte.validate != True ).all()
+                                                          DemandeCreacompte.valide != True ).all()
 
     # Validation création d'ouverture de compte NOK
     def validation_Crea(self, objet_demandecrea, valid_crea: bool):
@@ -52,7 +51,8 @@ class Agent(User):
             id=objet_demandecrea.id_compte.data,
             tel=objet_demandecrea.tel.data,
             adresse=objet_demandecrea.adresse.data,
-            justificatif=objet_demandecrea.justificatif
+            justificatif=objet_demandecrea.justificatif,
+            id_agent=objet_demandecrea.affect
         )
         return client
 

@@ -16,7 +16,7 @@ from webapp.gestibank.form import InscriptionForm
 @login_agent_required
 def demande():
         a = current_user.filtre_compte()
-        return render_template('gestibank/agent/demande.html', title="Page demande affectée")
+        return render_template('gestibank/agent/demande.html', title="Page demande affectée", list = a)
 
 #Renvoi la page des nouvelles demande de création de l'Agent connecter
 @bp.route ('/nvldemande/')
@@ -34,5 +34,6 @@ def demandechequier():
 @bp.route ('/listeclients/')
 @login_agent_required
 def listeclients():
-        return render_template('gestibank/agent/listeclients.html', title="Page demande chequier ")
+        a = current_user.filtre_clients()
+        return render_template('gestibank/agent/listeclients.html', title="Page demande chequier ", list = a)
 

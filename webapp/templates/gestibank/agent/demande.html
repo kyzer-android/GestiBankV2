@@ -4,4 +4,13 @@
 
         <h1>retour de la liste des demande affecté à l'agent </h1>
 
+        {% for key in list %}
+<!--           {{ key }}-->
+                {% for value in key %}
+                    {{ value }}
+                {% endfor %}
+       {% endfor %}
+
+
+
     {% endblock %}

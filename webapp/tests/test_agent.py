@@ -23,6 +23,11 @@ class TestUser (unittest.TestCase):
         list= agent.filtre_compte()
         print(list)
 
+    def test_validation(self):
+        valide = Agent.query.get(3)
+        validation = Agent.validation_Crea(valide)
+        print(validation)
+
 
 
 if __name__ == "__main__":
