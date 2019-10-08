@@ -73,5 +73,6 @@ def reset_password(token):
                 flash('nouveau MDP')
                 return redirect(url_for("main.index"))
             else:
+                flash("problème de validation")
                 return redirect(url_for('auth.reset_password', token=token))
         return render_template("auth/resetPassword.html", title="Reset Password", form=formulaire)

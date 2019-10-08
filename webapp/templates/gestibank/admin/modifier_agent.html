@@ -1,0 +1,15 @@
+{% extends "gestibank/admin/index.html" %}
+
+{%block adminaction%}
+<p>test</p>
+{% for agent in list %}
+     <div id="general">
+        <div id="tableau">
+                {% for val in agent%}
+                    <div id="ligne">{{val}}"</div>
+
+            {%endfor%}
+                        </div>
+         {%endfor%}
+        </div>
+{% endblock %}

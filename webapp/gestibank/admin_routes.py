@@ -26,7 +26,18 @@ def gestion_agent():
     return render_template('gestibank/admin/gestion_agent.html', title="Page Admin" , form=formulaire)
 
 
-@bp.route ('/admin/lister_agent', methods=['get', 'post'])
+@bp.route ('/admin/modifier_agent', methods=['get', 'post'])
 @login_admin_required
-def lister_agent():
-        return render_template('gestibank/admin/list_agent.html', title="Page Admin")
+def modifier_agent():
+    formulaire = AgentForm()
+    formulaire2= AgentForm()
+    if formulaire.validate_on_submit():
+        try:
+            Admin.cree_agent(formulaire)
+            return redirect(url_for('gestibank.modifier_agent'))
+        except ValueError as e:
+            flash(e)
+        else:
+            flash('Enregistrement validée')
+        return render_template('gestibank/admin/modifier_agent.html', title="Page Admin",list=(formulaire,formulaire2))
+

@@ -1,17 +1,21 @@
 
-#Classe administrateur  héritant du compte User et contenant les methodes:
-#lister les demande de creation de compte,affecter une demande de creation de compte,
-#création,modification,supression d'un agent un compte agent
+
+import logging
 import random
 from datetime import date
 
+from flask import flash
+from werkzeug.security import generate_password_hash
+
 from webapp import db
-from webapp.auth.email import send_password_reset_email
+from webapp.auth.email import send_first_password_reset_email
 from webapp.gestibank.models.agents import Agent
 from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 from webapp.gestibank.models.user import User
 
-
+#Classe administrateur  héritant du compte User et contenant les methodes:
+#lister les demande de creation de compte,affecter une demande de creation de compte,
+#création,modification,supression d'un agent un compte agent
 class Admin(User):
     __tablename__ = 'admin'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
@@ -36,12 +40,24 @@ class Admin(User):
             username=formulaire.username.data,
             nom=formulaire.nom.data,
             prenom=formulaire.prenom.data,
-            password=User.password(pwd),
+            password_hash=generate_password_hash(pwd),
             email=formulaire.mail.data,
             tel=formulaire.tel.data,
             debut_contrat=date.today()
        )
         db.session.add(agent)
         db.session.commit()
+        send_first_password_reset_email(agent)
+        flash ("compte crée et email envoyer")
         db.session.close()
-        # send_password_reset_email(agent)
+
+
+    @classmethod
+    def lister_agent(cls):
+        agents=Agent.query.all()
+        list_agents=[]
+        for agent in agents:
+            list_agents.append(agent.contenu_agent())
+        logging.debug(list_agents)
+        return list_agents
+

@@ -1,6 +1,6 @@
 from flask_babel import lazy_gettext as _l
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from flask_wtf import FlaskForm, widgets
+from wtforms import StringField, PasswordField, SubmitField, SelectMultipleField
 from wtforms.validators import DataRequired, Email, Length, Optional, EqualTo
 
 #Formulaire de demande de creation de compte utilisateur
@@ -24,3 +24,21 @@ class AgentForm(FlaskForm):
     mail = StringField(_l("Email"), validators=[DataRequired(), Email()])
     tel = StringField(_l("Phone number"), validators=[DataRequired(), Length(10)])
     submit = SubmitField(_l('Send'))
+
+# class MultiCheckboxField(SelectMultipleField):
+#     widget = widgets.ListWidget(prefix_label=False)
+#     option_widget = widgets.CheckboxInput()
+#
+#
+# class SimpleForm(Form):
+#     string_of_files = ['one\r\ntwo\r\nthree\r\n']
+#     list_of_files = string_of_files[0].split()
+#     # create a list of value/description tuples
+#     files = [(x, x) for x in list_of_files]
+#     example = MultiCheckboxField('Label', choices=files)
+#
+# class AffectForm(FlaskForm):
+#     list=['a','b','c']
+#     for n in list:
+#
+
