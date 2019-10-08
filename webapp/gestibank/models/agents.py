@@ -13,7 +13,7 @@ class Agent(User):
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     tel = db.Column(db.String(20))
     debut_contrat = db.Column(db.Date)
-    # client = db.relationship('Clients', backref='client', lazy='dynamic')
+    client = db.relationship('Client', backref='client', primaryjoin='Agent.id==Client.id_agent', lazy='dynamic')
 
     __mapper_args__ = {
         'polymorphic_identity': 'agent',

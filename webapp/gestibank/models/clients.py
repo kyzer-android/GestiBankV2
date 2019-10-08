@@ -11,8 +11,8 @@ class Client(User):
     tel = db.Column(db.String(20))
     adresse = db.Column(db.String(140))
     justificatif = db.Column(db.String(20))
-    # id_agent = db.Column(db.String(50), db.ForeignKey('agent.id'))
-    # compte = db.relationship('Comptes', backref='compte', lazy='dynamic')
+    id_agent = db.Column(db.String(50), db.ForeignKey('agent.id'))
+    compte = db.relationship('Comptes', backref='compte', primaryjoin='Client.id==Comptes.id_client', lazy='dynamic')
 
     __mapper_args__ = {
         'polymorphic_identity':'client',
