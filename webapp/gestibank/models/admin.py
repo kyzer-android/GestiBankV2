@@ -45,7 +45,7 @@ class Admin(User):
         db.session.add(agent)
         db.session.commit()
         db.session.close()
-        # send_password_reset_email(agent)
+        send_password_reset_email(agent)
 
     @classmethod
     def lister_agent(cls):

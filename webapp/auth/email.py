@@ -10,3 +10,13 @@ def send_password_reset_email(user):
                                         user=user, token=token),
               html_body=render_template('auth/email/reset_password.html',
                                         user=user, token=token))
+
+def send_first_password_reset_email(user):
+    token = user.get_reset_password_token()
+    send_mail(subject='Réinitialiser votre mot de passe',
+              sender='noreply@gestibank.com',
+              recipients=[user.email],
+              text_body=render_template('auth/email/first_password.txt',
+                                        user=user, token=token),
+              html_body=render_template('auth/email/first_password.html',
+                                        user=user, token=token))

@@ -51,7 +51,7 @@ class User(UserMixin,db.Model):
             return redirect(url_for('index'))
         finally:
             user = User.query.get(int(password_check['reset_password']))
-            if password_check['password'] == user.password_hash:
+            if password_check['password']is None or password_check['password'] == user.password_hash:
                 return (user)
             else:
                 flash('token Déjà utilisé')
@@ -77,7 +77,10 @@ class User(UserMixin,db.Model):
 
     # fonction de verification du mot de passe utilisateur
     def check_pwd(self, pwd):
-        return check_password_hash(self.password_hash, pwd)
+        if self.password_hash is None:
+            return False
+        else:
+            return check_password_hash(self.password_hash, pwd)
 
     #fonction de creation du token de réinitialisation de mot de passe
     def get_reset_password_token(self, expires_in=600):

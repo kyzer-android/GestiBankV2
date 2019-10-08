@@ -19,6 +19,7 @@ class Agent(User):
         'polymorphic_identity': 'agent',
     }
 
+
     def contenu_agent(self):
         liste = [self.type, self.id, self.username, self.nom, self.prenom, self.email,self.tel,self.debut_contrat]
         return liste
