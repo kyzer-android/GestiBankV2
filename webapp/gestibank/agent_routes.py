@@ -15,6 +15,7 @@ from webapp.gestibank.form import InscriptionForm
 @bp.route ('/demande/')
 @login_agent_required
 def demande():
+        a = current_user.filtre_compte()
         return render_template('gestibank/agent/demande.html', title="Page demande affectée")
 
 #Renvoi la page des nouvelles demande de création de l'Agent connecter
