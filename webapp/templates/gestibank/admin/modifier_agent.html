@@ -2,14 +2,20 @@
 
 {%block adminaction%}
 <p>test</p>
-{% for agent in list %}
      <div id="general">
-        <div id="tableau">
-                {% for val in agent%}
-                    <div id="ligne">{{val}}"</div>
-
-            {%endfor%}
-                        </div>
-         {%endfor%}
+        <tr id="tableau">
+           <tr>  {% for dict_item in list_dict %}
+                     {% for key,value in dict_item.items() %}
+                        <td id="celule">{{key}}</td>
+                     {% endfor %}
+                     {% endfor %}
+           </tr>
+            <div id="ligne">  {% for dict_item in parent_dict %}
+                    {% for key,value in dict_item.items() %}
+                         {{value}}
+                    {% endfor %}
+                    {% endfor %}
+            </div>
         </div>
+     </div>
 {% endblock %}

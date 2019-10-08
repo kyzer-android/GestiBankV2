@@ -1,12 +1,7 @@
-
-
-import logging
 import random
 from datetime import date
-
 from flask import flash
 from werkzeug.security import generate_password_hash
-
 from webapp import db
 from webapp.auth.email import send_first_password_reset_email
 from webapp.gestibank.models.agents import Agent
@@ -57,7 +52,6 @@ class Admin(User):
         agents=Agent.query.all()
         list_agents=[]
         for agent in agents:
-            list_agents.append(agent.contenu_agent())
-        logging.debug(list_agents)
+            list_agents.append(agent.todict)
         return list_agents
 

@@ -23,14 +23,23 @@ class User(UserMixin,db.Model):
         'polymorphic_on': type
     }
 
+    def __repr__(self):
+        test = (
+            self.id,
+            self.username,
+            self.nom,
+            self.prenom,
+            self.email,
+            self.type
+        )
+        return str(test)
 
     #Methode de la classe User permetant la generation d'un mot de passe
     @classmethod
     def password(cls, pwd):
         return generate_password_hash(pwd)
 
-    def __repr__(self):
-        return '<Utilisateur {}>'.format(self.username)
+
     #Methode de la classe User permetant la mise a jour de la base de donnée
     @classmethod
     def populate(cls,*args):

@@ -1,12 +1,9 @@
+from webapp import db
+from webapp.gestibank.models.user import User
+
 #Class demandecreacompte definissant une de damande de creation de compte  utilisateur et bancaire,
 #contenant les methode : affectation d'un agent,validation d'un compte,creation d'un comte user,ajout d'une deamande
 #a la base de données
-import logging
-
-from webapp import db
-from webapp.gestibank.models.user import User
-from webapp.gestibank.models.clients import Client
-
 class DemandeCreacompte(db.Model):
     id_compte = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50))

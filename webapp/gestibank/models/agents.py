@@ -21,6 +21,20 @@ class Agent(User):
         'polymorphic_identity': 'agent',
     }
 
+    def todict(self):
+        test = {
+           'id': str(self.id),
+           'username': self.username,
+           'nom': self.nom,
+           'prenom': self.prenom,
+           'email':self.email,
+           'type': self.type,
+           'tel': self.tel,
+           'debut_contrat': str(self.debut_contrat)
+        }
+        return test
+
+
     # Retourne les demandes de création de compte avec le id agent OK
     def filtre_compte(self):
         return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
@@ -37,8 +51,8 @@ class Agent(User):
             client = self.cree_client(objet_demandecrea) #Creer un client
             db.session.add(client)
             db.session.commit()
-            db.session.close()
             Comptes.creation_compteban(client.id)  # Création compte banquaire
+            db.session.close()
             # TODO envoi de mail avec id/mdp
         elif objet_demandecrea.valide is False:  # Si la demande n'est pas valider = envoi de mail demande info + mis en False
             pass  # TODO envoi de mail avec une demande d'info supplementaire
