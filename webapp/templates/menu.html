@@ -42,7 +42,7 @@ function LangueFonction(value) {
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.agent",param=1)}}'>{{_('Gestion des Clients')}}</a></div>
         <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.agent",param=2)}}'>{{_('Gestion des Demandes')}}</a></div>
         {%endif%} {% if current_user.type=='client' %}
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=1)}}'>{{_('Historique des comptes')}}</a></div>
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=1)}}'>{{_('comptes')}}</a></div>
           <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=2)}}'>{{_('virement')}}</a></div>
           <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=3)}}'>{{_('Other')}}</a></div>
         {%endif%}

@@ -1,0 +1,45 @@
+{% extends "gestibank/agent/index.html" %}
+
+{%block agentaction%}
+          <h1>valider la création</h1>
+    <form action='' method="post" >
+        {{form.hidden_tag()}}
+
+        <p> username: <br>
+            {{dict['username']}}
+        </p>
+        <p> nom: <br>
+            {{dict['nom']}}
+        </p>
+        <p> prenom: <br>
+            {{dict['prenom']}}
+        </p>
+        <p> mail: <br>
+            {{dict['mail']}}
+        </p>
+        <p> tel: <br>
+            {{dict['tel']}}
+        </p>
+
+        <p> adresse: <br>
+            {{dict['adresse']}}
+        </p>
+
+        <p> justificatif: <br>
+            {{dict['justificatif']}}
+        </p>
+
+        <p> Valide: <br>
+            {{dict['valide']}}
+        </p>
+        <p>
+            {{form.valide}}<br>
+                  {% for error in form.valide.errors %}
+                <span style="color: green;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>{{form.submit()}}</p>
+
+    </form>
+{% endblock %}

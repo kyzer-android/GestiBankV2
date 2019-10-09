@@ -37,9 +37,14 @@ class Agent(User):
     def list_param(self):
         return  ('id','username','nom','prenom','email','type','tel','debut_contrat')
 
-    # Retourne les demandes de création de compte avec le id agent OK
-    def filtre_compte(self):
-        return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
+
+    #Liste les demandes de créations OK
+    def lister_demandecrea(self):
+        demandecrea = db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
+        list_demandecrea=[]
+        for demande in demandecrea:
+            list_demandecrea.append(demande.todict())
+        return list_demandecrea
 
     # Retourne les clients gérée par l'agent NOK
     def filtre_clients(self):

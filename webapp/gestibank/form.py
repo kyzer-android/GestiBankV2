@@ -1,6 +1,6 @@
 from flask_babel import lazy_gettext as _l
 from flask_wtf import FlaskForm, widgets
-from wtforms import StringField, PasswordField, SubmitField, SelectMultipleField
+from wtforms import StringField, PasswordField, SubmitField, SelectMultipleField, RadioField
 from wtforms.validators import DataRequired, Email, Length, Optional, EqualTo
 
 #Formulaire de demande de creation de compte utilisateur
@@ -33,5 +33,11 @@ class ModifagentForm(FlaskForm):
     mail = StringField(_l("Email"))
     tel = StringField(_l("Phone number"))
     submit = SubmitField(_l('Send'))
+
+class ValidedemandFrom(FlaskForm):
+
+    valide = RadioField("Valide", choices=[('True', 'Validation'),('False', 'En attente'),('None', 'Ne rien faire')])
+    submit = SubmitField(_l('Send'))
+
 
 

@@ -13,9 +13,11 @@
             </div>
                 </tr>
                 {% for dict_item in list_dict %}
-                    <div class="ligne"> {% for value in dict_item.values() %}
+                    <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.valid_demandcrea',option=dict_item['id_compte'])}}';">
+                        {% for value in dict_item.values() %}
+
                         {{value}}
-                        {% endfor%}</div>
+                        {% endfor%}</button></div>
                 {% endfor%}
             </div>
 

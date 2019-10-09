@@ -23,6 +23,9 @@ class Comptes(db.Model):
     solde = db.Column(db.Float(20))
     date_creation = db.Column(db.Date)
 
+    __mapper_args__ = {
+        'polymorphic_identity': 'comptes',
+    }
     @classmethod
     def creation_compteban(cls, client):
             # client = User.query.get(id_client)
@@ -41,3 +44,14 @@ class Comptes(db.Model):
 
     def solvabilite(self,valeur_virement=0):
         return self.sode >= valeur_virement
+
+    def to_dict(self):
+        return {
+                "id_compte": self.id_compte,
+                "id_client":self.id_client,
+                "type_compte":str(self.type_compte),
+                "rib":self.rib,
+                "solde": self.solde,
+                "date_creation": self.date_creation,
+
+                }
