@@ -1,12 +1,9 @@
+from webapp import db
+from webapp.gestibank.models.user import User
+
 #Class demandecreacompte definissant une de damande de creation de compte  utilisateur et bancaire,
 #contenant les methode : affectation d'un agent,validation d'un compte,creation d'un comte user,ajout d'une deamande
 #a la base de données
-import logging
-
-from webapp import db
-from webapp.gestibank.models.user import User
-from webapp.gestibank.models.clients import Client
-
 class DemandeCreacompte(db.Model):
     id_compte = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50))
@@ -36,6 +33,24 @@ class DemandeCreacompte(db.Model):
             self.affect
         )
         return str(test)
+
+    # Changement en dictionnaire
+    def todict(self):
+        test = {
+            'id_compte': self.id_compte,
+            'username': self.username,
+            'password': self.password,
+            'nom': self.nom,
+            'prenom': self.prenom,
+            'mail': self.mail,
+            'tel': self.tel,
+            'adresse': self.adresse,
+            'justificatif': self.justificatif,
+            'valide': self.valide,
+            'affect': self.affect
+        }
+        return test
+
     #fonction recevant un id agent et l'affectant a la objet demande en cours
     def affectation(self, agent_id):  # l'admin affect un client a un agent
         self.affect = agent_id
@@ -46,7 +61,7 @@ class DemandeCreacompte(db.Model):
     def validation(self, valide):  # L'agent valide le client
         self.valide = valide
         db.session.commit(self)
-        db.session.close()
+        
     #fonction utilisant les variables de l'objet demandecrea en cours pour crée un nouelles utilisateur
     # def creation_compte_User(self):
     #     user=Client(

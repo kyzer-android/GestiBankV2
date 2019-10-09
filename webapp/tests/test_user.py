@@ -6,7 +6,7 @@ from webapp import create_app
 from webapp.gestibank.models.agents import Agent
 from webapp.gestibank.models.user import User
 from webapp.extension import db
-logging.basicConfig(level=logging.DEBUG)
+
 
 class TestUser (unittest.TestCase):
     def setUp(self):

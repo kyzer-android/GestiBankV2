@@ -29,10 +29,10 @@ def admin(param=None):
 @bp.route ('/agent/<int:param>')
 @login_agent_required
 def agent(param=None):
-        return render_template('gestibank/agent.html', title="Page Agent", param=param)
+        return render_template('gestibank/agent/index.html', title="Page Agent", param=param)
 
 #Renvoi la page d'index de l'utilisateur  connecter
 @bp.route ('/client/<int:param>')
 @login_client_required
 def client(param=None):
-        return render_template('gestibank/client.html', title="Page Client", param=param)
+        return render_template('gestibank/client/index.html', title="Page Client", param=param)
