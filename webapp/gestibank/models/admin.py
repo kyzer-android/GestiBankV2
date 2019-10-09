@@ -73,3 +73,22 @@ class Admin(User):
         list=(param,list_agents)
         return list
 
+    @classmethod
+    def lister_Demande_Crea(cls):
+        demandes = DemandeCreacompte.query.all()
+        list_demande = []
+        for demande in demandes:
+            list_demande.append(demande.todict())
+            param = demande.list_param()
+        list = (param, list_demande)
+        return list
+
+    @classmethod
+    def lister_demande_non_affecter(cls):
+        demandes =db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == None)
+        list_demande = []
+        for demande in demandes:
+            list_demande.append(demande.todict())
+            param = demande.list_param()
+        list = (param, list_demande)
+        return list

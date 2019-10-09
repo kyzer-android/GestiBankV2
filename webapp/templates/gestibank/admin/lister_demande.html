@@ -1,0 +1,25 @@
+{% extends "gestibank/admin/index.html" %}
+
+{%block adminaction%}
+     <div id="general">
+        <tr class="tableau">
+           <tr><div class="titre">
+                     {% for key in list_param %}
+                       <td class="celule">{{key}}</td>
+                     {% endfor %}
+           </div>
+           </tr>
+
+         {% for dict_item in list_dict %}
+         <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.modif_agent',parametre=dict_item['id_compte'])}}';">
+
+             {% for value in dict_item.values() %}
+                      {{value}}
+                    {% endfor %}</button></div>
+              {% endfor %}
+
+
+        </div>
+     </div>
+
+{% endblock %}

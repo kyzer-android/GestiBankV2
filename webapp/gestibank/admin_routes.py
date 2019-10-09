@@ -48,7 +48,25 @@ def modif_agent(parametre):
              return redirect(url_for('gestibank.modifier_agent'))
          except ValueError as e:
              flash(e)
+             return redirect(url_for('gestibank.modifier_agent'))
          else:
              flash('Enregistrement validée')
-             return redirect(url_for('gestibank.modifier_agent'))
+
+
      return render_template('gestibank/admin/modif_agent.html',form=formulaire, title="Page Admin",dict=dict)
+
+
+
+@bp.route ('/admin/lister_demande_crea', methods=['get', 'post'])
+@login_admin_required
+def lister_demande_crea():
+        test=Admin.lister_Demande_Crea()
+        return render_template('gestibank/admin/lister_demande.html', title="Page Admin",list_param=test[0],list_dict=test[1])
+
+
+@bp.route ('/admin/lister_demande', methods=['get', 'post'])
+@login_admin_required
+def lister_demande_non_affecter():
+        test=Admin.lister_demande_non_affecter()
+        return render_template('gestibank/admin/lister_demande.html', title="Page Admin",list_param=test[0],list_dict=test[1])
+

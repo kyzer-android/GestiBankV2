@@ -5,8 +5,8 @@
             <div class="ligne" style=";border-color:purple">  <a href='{{url_for("gestibank.gestion_agent")}}'>{{_('Crée un agent')}}</a></div>
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.modifier_agent")}}'>{{_('Modifier un agent')}}</a></div>
         {%endif%} {% if param==2 %}
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.gestion_agent")}}'>{{_('Lister Toutes demande')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.gestion_agent")}}'>{{_('Lister les demande non affecter')}}</a></div>
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.lister_demande_crea")}}'>{{_('Lister Toutes demande')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.lister_demande_non_affecter")}}'>{{_('Lister les demande non affecter')}}</a></div>
          {%endif%}
     </div>
 <div id="top">{%block adminaction%}{% endblock %}</div>
