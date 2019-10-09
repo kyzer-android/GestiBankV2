@@ -34,10 +34,13 @@ class Agent(User):
         }
         return test
 
-
-    # Retourne les demandes de création de compte avec le id agent OK
-    def filtre_compte(self):
-        return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
+    #Liste les demandes de créations OK
+    def lister_demandecrea(self):
+        demandecrea = db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
+        list_demandecrea=[]
+        for demande in demandecrea:
+            list_demandecrea.append(demande.todict())
+        return list_demandecrea
 
     # Retourne les clients gérée par l'agent NOK
     def filtre_clients(self):
@@ -61,12 +64,19 @@ class Agent(User):
 
     #Création du compte Client à partir des données du de demandecrecompte NOK
     def cree_client(self, objet_demandecrea):
+        user = User(
+            username=objet_demandecrea.usename.data,
+            password_hash = objet_demandecrea.password.data,
+            nom = objet_demandecrea.nom.data,
+            prenom = objet_demandecrea.prenom.data,
+            email=objet_demandecrea.adresse.data,
+        )
+        return user
         client = Client(
-            id=objet_demandecrea.id_compte.data,
             tel=objet_demandecrea.tel.data,
             adresse=objet_demandecrea.adresse.data,
-            justificatif=objet_demandecrea.justificatif,
-            id_agent=objet_demandecrea.affect
+            justificatif=objet_demandecrea.justificatif.data,
+            id_agent=objet_demandecrea.affect.data,
         )
         return client
 

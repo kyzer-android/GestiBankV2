@@ -39,7 +39,6 @@ class DemandeCreacompte(db.Model):
         test = {
             'id_compte': self.id_compte,
             'username': self.username,
-            'password': self.password,
             'nom': self.nom,
             'prenom': self.prenom,
             'mail': self.mail,
@@ -50,6 +49,10 @@ class DemandeCreacompte(db.Model):
             'affect': self.affect
         }
         return test
+    @classmethod
+    def list_param(cls):
+        return ("id_compte", "username", "nom", "prenom", "mail", "tel", "adresse",
+                "justificatif", "valide", "affect")
 
     #fonction recevant un id agent et l'affectant a la objet demande en cours
     def affectation(self, agent_id):  # l'admin affect un client a un agent

@@ -5,8 +5,10 @@ from flask_login import current_user
 
 from webapp.auth.models import login_admin_required, login_agent_required, login_client_required
 from webapp.gestibank import bp
+from webapp.gestibank.models.agents import Agent
 from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 from webapp.gestibank.form import InscriptionForm
+import logging
 
 
 
@@ -15,8 +17,11 @@ from webapp.gestibank.form import InscriptionForm
 @bp.route ('/demande/')
 @login_agent_required
 def demande():
-        a = current_user.filtre_compte()
-        return render_template('gestibank/agent/demande.html', title="Page demande affectée", list = a)
+        test = current_user.lister_demandecrea()
+        list = DemandeCreacompte.list_param()
+        logging.debug(test)
+        return render_template('gestibank/agent/demande.html', title="Page demande affectée",
+                               list_param=list , list_dict=test)
 
 #Renvoi la page des nouvelles demande de création de l'Agent connecter
 @bp.route ('/nvldemande/')
