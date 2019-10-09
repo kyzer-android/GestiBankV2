@@ -34,6 +34,8 @@ class Agent(User):
         }
         return test
 
+    def list_param(self):
+        return  ('id','username','nom','prenom','email','type','tel','debut_contrat')
 
     # Retourne les demandes de création de compte avec le id agent OK
     def filtre_compte(self):

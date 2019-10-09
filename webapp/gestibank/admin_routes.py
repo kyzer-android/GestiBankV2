@@ -28,8 +28,8 @@ def gestion_agent():
 @bp.route ('/admin/modifier_agent', methods=['get', 'post'])
 @login_admin_required
 def modifier_agent():
-        # test=Admin.lister_agent()
-        # logging.debug(test)
-        test = [{'A': 'val1', 'B': 'val2'}, {'C': 'val3', 'D': 'val4'}]
-        return render_template('gestibank/admin/modifier_agent.html', title="Page Admin",list_dict=test)
+        test=Admin.lister_agent()
+        logging.debug(test)
+
+        return render_template('gestibank/admin/modifier_agent.html', title="Page Admin",list_param=test[0],list_dict=test[1])
 

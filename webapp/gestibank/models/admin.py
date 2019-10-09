@@ -52,6 +52,8 @@ class Admin(User):
         agents=Agent.query.all()
         list_agents=[]
         for agent in agents:
-            list_agents.append(agent.todict)
-        return list_agents
+            list_agents.append(agent.todict())
+            param=agent.list_param()
+        list=(param,list_agents)
+        return list
 

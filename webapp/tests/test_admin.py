@@ -16,9 +16,10 @@ class TestUser (unittest.TestCase):
 
     def test_lister_agent(self):
         test=Admin.lister_agent()
-        logging.info("test_lister_agent", test)
-        for val in test :
-            logging.info("test_lister_agent",val)
+        logging.info("test_lister_agent_param", test[0])
+        logging.info("test_lister_agent", test[1])
+        # for val in test :
+        #     logging.info("test_lister_un_agent",val)
 
     def test_lister_demand(self):
         utilisateur = Admin.query.get(1)

@@ -3,19 +3,21 @@
 {%block adminaction%}
 <p>test</p>
      <div id="general">
-        <tr id="tableau">
-           <tr>  {% for dict_item in list_dict %}
-                     {% for key,value in dict_item.items() %}
-                        <td id="celule">{{key}}</td>
+        <tr class="tableau">
+           <tr><div class="titre">
+                     {% for key in list_param %}
+                       <td class="celule">{{key}}</td>
                      {% endfor %}
-                     {% endfor %}
+           </div>
            </tr>
-            <div id="ligne">  {% for dict_item in parent_dict %}
-                    {% for key,value in dict_item.items() %}
-                         {{value}}
-                    {% endfor %}
-                    {% endfor %}
-            </div>
+
+         {% for dict_item in list_dict %}
+                <div class="ligne"> {% for value in dict_item.values() %}
+                      {{value}}
+                    {% endfor %} </div>
+              {% endfor %}
+
+
         </div>
      </div>
 {% endblock %}
