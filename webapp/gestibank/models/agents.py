@@ -54,30 +54,28 @@ class Agent(User):
             client = self.cree_client(objet_demandecrea) #Creer un client
             db.session.add(client)
             db.session.commit()
-            Comptes.creation_compteban(client.id)  # Création compte banquaire
-            db.session.close()
+            Comptes.creation_compteban(client)  # Création compte banquaire
             # TODO envoi de mail avec id/mdp
+            return True
         elif objet_demandecrea.valide is False:  # Si la demande n'est pas valider = envoi de mail demande info + mis en False
             pass  # TODO envoi de mail avec une demande d'info supplementaire
+            return True
         else:  # Erreur
-            print("Erreur/En attente")
+            return  False
 
     #Création du compte Client à partir des données du de demandecrecompte NOK
     def cree_client(self, objet_demandecrea):
-        user = User(
-            username=objet_demandecrea.usename.data,
-            password_hash = objet_demandecrea.password.data,
-            nom = objet_demandecrea.nom.data,
-            prenom = objet_demandecrea.prenom.data,
-            email=objet_demandecrea.adresse.data,
-        )
-        return user
         client = Client(
-            tel=objet_demandecrea.tel.data,
-            adresse=objet_demandecrea.adresse.data,
-            justificatif=objet_demandecrea.justificatif.data,
-            id_agent=objet_demandecrea.affect.data,
-        )
+            username=objet_demandecrea.username,
+            password_hash = objet_demandecrea.password,
+            nom = objet_demandecrea.nom,
+            prenom = objet_demandecrea.prenom,
+            email=objet_demandecrea.mail,
+            tel=objet_demandecrea.tel,
+            adresse=objet_demandecrea.adresse,
+            justificatif=objet_demandecrea.justificatif,
+            id_agent=self.id
+             )
         return client
 
 

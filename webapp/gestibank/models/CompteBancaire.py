@@ -1,7 +1,7 @@
 from datetime import date
 from flask_babel import lazy_gettext as _l
 from flask import flash
-from sqlalchemy.sql.functions import random
+import random
 from webapp import db
 import enum
 
@@ -24,16 +24,16 @@ class Comptes(db.Model):
     date_creation = db.Column(db.Date)
 
     @classmethod
-    def creation_compteban(cls, id_client):
-            client = User.query.get(id_client)
+    def creation_compteban(cls, client):
+            # client = User.query.get(id_client)
             if client is not None:
                 this_comtpe=Comptes(
                 id_compte = (random.randint(1000000000, 9999999999)),
                 type_compte = 'COURANT',
-                date_creation =  str (date.today()),
+                date_creation = date.today(),
                 rib = str(random.randint(1000000000, 9999999999)),
-                solde = 0.0,
-                id_client=id_client
+                solde = str(random.randint(1000, 9999)),
+                id_client=client.id
                 )
                 User.populate(this_comtpe)
             else:

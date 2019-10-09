@@ -58,12 +58,11 @@ class DemandeCreacompte(db.Model):
     def affectation(self, agent_id):  # l'admin affect un client a un agent
         self.affect = agent_id
         db.session.commit()
-        db.session.close()
 
     # fonction recevant un boolean et l'insert dans la validation de l'objet demande en cours
     def validation(self, valide):  # L'agent valide le client
         self.valide = valide
-        db.session.commit(self)
+        db.session.commit()
         
     #fonction utilisant les variables de l'objet demandecrea en cours pour crée un nouelles utilisateur
     # def creation_compte_User(self):
