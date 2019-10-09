@@ -25,20 +25,13 @@ class AgentForm(FlaskForm):
     tel = StringField(_l("Phone number"), validators=[DataRequired(), Length(10)])
     submit = SubmitField(_l('Send'))
 
-# class MultiCheckboxField(SelectMultipleField):
-#     widget = widgets.ListWidget(prefix_label=False)
-#     option_widget = widgets.CheckboxInput()
-#
-#
-# class SimpleForm(Form):
-#     string_of_files = ['one\r\ntwo\r\nthree\r\n']
-#     list_of_files = string_of_files[0].split()
-#     # create a list of value/description tuples
-#     files = [(x, x) for x in list_of_files]
-#     example = MultiCheckboxField('Label', choices=files)
-#
-# class AffectForm(FlaskForm):
-#     list=['a','b','c']
-#     for n in list:
-#
+class ModifagentForm(FlaskForm):
+
+    username = StringField(_l("Connexion identifier"))
+    nom = StringField(_l("FirstName"))
+    prenom = StringField(_l("Surname"))
+    mail = StringField(_l("Email"))
+    tel = StringField(_l("Phone number"))
+    submit = SubmitField(_l('Send'))
+
 

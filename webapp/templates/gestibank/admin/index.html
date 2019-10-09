@@ -9,5 +9,6 @@
           <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.gestion_agent")}}'>{{_('Lister les demande non affecter')}}</a></div>
          {%endif%}
     </div>
-    {%block adminaction%}{% endblock %}
+<div id="top">{%block adminaction%}{% endblock %}</div>
+<div id="bottom">{%block agentmodifform%}{% endblock %}</div>
 {% endblock %}
