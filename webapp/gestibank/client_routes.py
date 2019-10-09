@@ -22,12 +22,11 @@ from webapp.gestibank.form import InscriptionForm
 
 
 #Renvoi la page des demande de création de l'Agent connecter
-@bp.route ('/client/')
+@bp.route ('/historique/')
 @login_client_required
+def historique():
+   cl =current_user.lister_comptes()
 
-def client():
-   cl =Client.lister_client()
-   print(type(cl))
-   print(cl)
+   cl=cl*5
 
    return render_template('gestibank/client/historique.html', cl=cl,keys=cl[0].keys())

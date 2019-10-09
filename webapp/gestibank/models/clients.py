@@ -34,10 +34,11 @@ class Client(User):
         return self.compte.query.all()
 
 
-    @classmethod
-    def lister_client(cls):
-        clients=Client.query.all()
-        list_clients=[]
-        for client in clients:
-            list_clients.append(client.to_dict())
-        return list_clients
+
+
+    def lister_comptes(self):
+        comptes=Comptes.query.filter_by(id_client=self.id).all()
+        list_comptes=[]
+        for cpt in comptes:
+            list_comptes.append(cpt.to_dict())
+        return list_comptes

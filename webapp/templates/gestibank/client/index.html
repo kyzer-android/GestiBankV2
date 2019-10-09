@@ -3,7 +3,7 @@
     <div id="cadre" style="static;">
         {% if param==1 %}
             <div class="ligne" style=";border-color:purple">
-                <a href='{{url_for("main.index")}}'>{{_('lister les operation par mois')}}</a>
+                <a href='{{url_for("gestibank.historique")}}'>{{_('liste des compte')}}</a>
             </div>
 
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.inscription")}}'>{{_('????')}}</a></div>
@@ -15,5 +15,5 @@
           <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('imprimer des transaction')}}</a></div>
          {%endif%}
     </div>
-        {%block clientaction%}{% endblock %}
+    {%block clientaction%}{% endblock %}
 {% endblock %}

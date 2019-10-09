@@ -5,18 +5,22 @@
     <table>
     <thead>
     {%for col in keys%}
-    <th>{{col}}</th>
+   <div id="lig"> <th>{{col}}</th></div>
 
     {% endfor %}
     </thead>
     <tbody>
-    {%for user in cl %}
+    {%for compte in cl %}
     <tr>
-        {%for col in user.values()%}
-                    <td>
+        <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.modif_agent',parametre=compte['id_compte'])}}';">
+
+        {%for col in compte.values()%}
+
+
                         {{col}}
-                    </td>
-        {% endfor %}
+
+            {% endfor %}</button></div>
+
     </tr>
              {% endfor %}
     </tbody>
