@@ -1,0 +1,47 @@
+{% extends "gestibank/admin/index.html" %}
+
+{%block agentmodifform%}
+          <h1>Modifier Agent</h1>
+    <form action='' method="post" >
+        {{form.hidden_tag()}}
+        <p>
+            {{dict['username']}}<br>
+            {{form.username(size=32)}}
+            {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+         <p>
+            {{dict['nom']}}<br>
+            {{form.nom(size=32)}}
+            {% for error in form.nom.errors %}
+                <span style="color: blue;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+         <p>
+            {{dict['prenom']}}<br>
+            {{form.prenom(size=32)}}
+            {% for error in form.prenom.errors %}
+                <span style="color: orange;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{dict['email']}}<br>
+            {{form.mail(size=32)}}
+            {% for error in form.mail.errors %}
+                <span style="color: purple;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{dict['tel']}}<br>
+            {{form.tel(size=32)}}
+            {% for error in form.tel.errors %}
+                <span style="color: cyan;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>{{form.submit()}}</p>
+
+    </form>
+{% endblock %}

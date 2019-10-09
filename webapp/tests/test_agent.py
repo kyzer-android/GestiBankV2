@@ -2,6 +2,9 @@ import unittest
 from webapp import create_app
 from webapp.gestibank.models.agents import Agent
 from webapp.extension import db
+import logging
+
+from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 
 
 class TestUser (unittest.TestCase):
@@ -17,16 +20,24 @@ class TestUser (unittest.TestCase):
     def tearDown(self):
         db.session.remove()
 
-    def test_listdemandecrea(self):
-        agent = Agent.query.get(3)
+    # def test_cree_client(self):
+    #     demande_crea = DemandeCreacompte.query.get(1)
+    #     agent = Agent.query.get(2)
+    #     client = agent.cree_client(demande_crea)
+    #     logging.debug(client)
+    #     db.session.add(client)
+    #     db.session.commit()
 
-        list= agent.filtre_compte()
-        print(list)
+    # def test_lister_demandecrea(self):
+    #     agent = Agent.query.get(2)
+    #     list= agent.lister_demandecrea()
+    #     logging.debug(list)
 
     def test_validation(self):
-        valide = Agent.query.get(3)
-        validation = Agent.validation_Crea(valide)
-        print(validation)
+        agent = Agent.query.get(2)
+        demande_crea = DemandeCreacompte.query.get(1)
+        agent.validation_Crea(demande_crea, True)
+
 
 
 
