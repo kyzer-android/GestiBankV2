@@ -34,12 +34,13 @@ class Agent(User):
         }
         return test
 
-    def list_param(self):
-        return  ('id','username','nom','prenom','email','type','tel','debut_contrat')
-
-    # Retourne les demandes de création de compte avec le id agent OK
-    def filtre_compte(self):
-        return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
+    #Liste les demandes de créations OK
+    def lister_demandecrea(self):
+        demandecrea = db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id).all()
+        list_demandecrea=[]
+        for demande in demandecrea:
+            list_demandecrea.append(demande.todict())
+        return list_demandecrea
 
     # Retourne les clients gérée par l'agent NOK
     def filtre_clients(self):
@@ -53,23 +54,28 @@ class Agent(User):
             client = self.cree_client(objet_demandecrea) #Creer un client
             db.session.add(client)
             db.session.commit()
-            Comptes.creation_compteban(client.id)  # Création compte banquaire
-            db.session.close()
+            Comptes.creation_compteban(client)  # Création compte banquaire
             # TODO envoi de mail avec id/mdp
+            return True
         elif objet_demandecrea.valide is False:  # Si la demande n'est pas valider = envoi de mail demande info + mis en False
             pass  # TODO envoi de mail avec une demande d'info supplementaire
+            return True
         else:  # Erreur
-            print("Erreur/En attente")
+            return  False
 
     #Création du compte Client à partir des données du de demandecrecompte NOK
     def cree_client(self, objet_demandecrea):
         client = Client(
-            id=objet_demandecrea.id_compte.data,
-            tel=objet_demandecrea.tel.data,
-            adresse=objet_demandecrea.adresse.data,
+            username=objet_demandecrea.username,
+            password_hash = objet_demandecrea.password,
+            nom = objet_demandecrea.nom,
+            prenom = objet_demandecrea.prenom,
+            email=objet_demandecrea.mail,
+            tel=objet_demandecrea.tel,
+            adresse=objet_demandecrea.adresse,
             justificatif=objet_demandecrea.justificatif,
-            id_agent=objet_demandecrea.affect
-        )
+            id_agent=self.id
+             )
         return client
 
 

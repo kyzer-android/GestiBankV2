@@ -1,16 +1,24 @@
-{% extends "gestibank/agent.html" %}
+{% extends "gestibank/agent/index.html" %}
 
-    {%block agentaction%}
+{%block agentaction%}
 
-        <h1>retour de la liste des demande affecté à l'agent </h1>
+            <h1>retour de la liste des demande affecté à l'agent </h1>
 
-        {% for key in list %}
-<!--           {{ key }}-->
-                {% for value in key %}
-                    {{ value }}
-                {% endfor %}
-       {% endfor %}
+            <div id="general">
+                <tr class="tableau">
+                    <tr><div class="titre">
+                        {% for key in list_param %}
+                            <td class="celule">{{key}}</td>
+                        {% endfor %}
+            </div>
+                </tr>
+                {% for dict_item in list_dict %}
+                    <div class="ligne"> {% for value in dict_item.values() %}
+                        {{value}}
+                        {% endfor%}</div>
+                {% endfor%}
+            </div>
 
 
 
-    {% endblock %}
+{% endblock %}
