@@ -2,7 +2,10 @@
 {% block mybody %}
     <div id="cadre" style="static;">
         {% if param==1 %}
-            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("main.index")}}'>{{_('lister les operation par mois')}}</a></div>
+            <div class="ligne" style=";border-color:purple">
+                <a href='{{url_for("main.index")}}'>{{_('lister les operation par mois')}}</a>
+            </div>
+
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.inscription")}}'>{{_('????')}}</a></div>
         {%endif%} {% if param==2 %}
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('historique des virements')}}</a></div>

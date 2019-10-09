@@ -1,0 +1,27 @@
+ {% extends "gestibank/client/index.html" %}
+{%block clientaction%}
+<h1><center>Historique de comptes </center></h1>
+        <center>
+    <table>
+    <thead>
+    {%for col in keys%}
+    <th>{{col}}</th>
+
+    {% endfor %}
+    </thead>
+    <tbody>
+    {%for user in cl %}
+    <tr>
+        {%for col in user.values()%}
+                    <td>
+                        {{col}}
+                    </td>
+        {% endfor %}
+    </tr>
+             {% endfor %}
+    </tbody>
+
+     </table></center>
+{% endblock %}
+
+
