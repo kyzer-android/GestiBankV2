@@ -1,0 +1,31 @@
+ {% extends "gestibank/client/index.html" %}
+{%block clientaction%}
+<h1><center>Historique de comptes </center></h1>
+        <center>
+    <table>
+    <thead>
+    {%for col in keys%}
+   <div id="lig"> <th>{{col}}</th></div>
+
+    {% endfor %}
+    </thead>
+    <tbody>
+    {%for compte in cl %}
+    <tr>
+        <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.modif_agent',parametre=compte['id_compte'])}}';">
+
+        {%for col in compte.values()%}
+
+
+                        {{col}}
+
+            {% endfor %}</button></div>
+
+    </tr>
+             {% endfor %}
+    </tbody>
+
+     </table></center>
+{% endblock %}
+
+
