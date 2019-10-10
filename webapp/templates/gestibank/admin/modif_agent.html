@@ -37,6 +37,7 @@
             {{dict['tel']}}<br>
             {{form.tel(size=32)}}
             {% for error in form.tel.errors %}
+
                 <span style="color: cyan;">[{{ error }}]</span>
             {% endfor %}
         </p>
