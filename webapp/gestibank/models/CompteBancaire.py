@@ -28,7 +28,6 @@ class Comptes(db.Model):
 
     @classmethod
     def creation_compteban(cls, client):
-            # client = User.query.get(id_client)
             if client is not None:
                 this_comtpe=Comptes(
                 id_compte = (random.randint(1000000000, 9999999999)),

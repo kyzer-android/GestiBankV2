@@ -9,9 +9,9 @@ class TypeOP(enum.Enum):
     cheque = 'chèque'
     virement = 'virement'
 
-class transaction(db.Model):
+class Transaction(db.Model):
     id_operation = db.Column(db.Integer, primary_key=True)
-    Montant_operation=db.Column(db.Integer)
+    montant_operation=db.Column(db.Integer)
     libeler_operation=db.Column(db.String(50))
     nouveau_solde=db.Column(db.Integer)
     type_operation=db.Column(db.Enum(TypeOP))
