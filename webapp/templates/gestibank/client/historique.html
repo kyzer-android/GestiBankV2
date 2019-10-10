@@ -5,19 +5,23 @@
     <table>
     <thead>
     {%for col in keys%}
-   <div id="lig"> <th>{{col}}</th></div>
+    {%if col=='rib' or col=='solde' or col=='type_compte'%}
 
+
+   <div id="lig"> <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{col}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th></div>
+    {%endif%}
     {% endfor %}
     </thead>
     <tbody>
     {%for compte in cl %}
     <tr>
-        <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.modif_agent',parametre=compte['id_compte'])}}';">
+        <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.virement', id_compte=compte['id_compte'])}}';">
 
-        {%for col in compte.values()%}
+        {%for key,value in compte.items()%}
+            {%if key=='rib' or key=='solde' or key=='type_compte'%}
 
-
-                        {{col}}
+                        {{value}}
+            {%endif%}
 
             {% endfor %}</button></div>
 

@@ -1,6 +1,6 @@
 from flask_babel import lazy_gettext as _l
 from flask_wtf import FlaskForm, widgets
-from wtforms import StringField, PasswordField, SubmitField, SelectMultipleField
+from wtforms import StringField, PasswordField, SubmitField,FloatField, SelectMultipleField
 from wtforms.validators import DataRequired, Email, Length, Optional, EqualTo
 
 #Formulaire de demande de creation de compte utilisateur
@@ -15,6 +15,14 @@ class InscriptionForm(FlaskForm):
     adresse = StringField(_l("Adresse"), validators=[DataRequired()])
     justificatif = StringField(_l("Justificatif"), validators=[Optional()])
     submit = SubmitField(_l('Send'))
+
+class VirementForm(FlaskForm):
+        username = StringField(_l("Nom destinataire"), validators=[Length(min=8, max=25)])
+        rib = StringField(_l("Rib_Destinataire"), validators=[Length(min=8, max=30)])
+        montant = FloatField(_l('Montant'))
+        motif = StringField(_l("Motif virement"))
+
+        submit = SubmitField(_l('Valider'))
 
 
 class AgentForm(FlaskForm):

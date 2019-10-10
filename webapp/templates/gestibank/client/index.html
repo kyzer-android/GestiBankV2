@@ -9,11 +9,12 @@
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.inscription")}}'>{{_('????')}}</a></div>
         {%endif%} {% if param==2 %}
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('historique des virements')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('Effectuer un virement')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.historique")}}'>{{_('Effectuer un virement')}}</a></div>
         {%endif%} {% if param==3 %}
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('demande de chequier')}}</a></div>
           <div class="ligne" style=";border-color:blue">  <a href='{{url_for("main.index")}}'>{{_('imprimer des transaction')}}</a></div>
          {%endif%}
     </div>
     {%block clientaction%}{% endblock %}
+    {%block action%}{% endblock %}
 {% endblock %}

@@ -5,6 +5,7 @@ import random
 from webapp import db
 import enum
 
+
 from webapp.gestibank.models.user import User
 
 
@@ -45,13 +46,22 @@ class Comptes(db.Model):
     def solvabilite(self,valeur_virement=0):
         return self.sode >= valeur_virement
 
+
     def to_dict(self):
         return {
                 "id_compte": self.id_compte,
                 "id_client":self.id_client,
                 "type_compte":str(self.type_compte),
                 "rib":self.rib,
-                "solde": self.solde,
+                "solde": str(self.solde) +(' € '),
                 "date_creation": self.date_creation,
 
                 }
+
+    def virement_d(self, montant):
+        if (self.solde < montant):
+            return flash("Solde insufissant pour effectuer le virement")
+        else:
+            self.solde = self.solde - montant
+            print("Opération effectuer avec succés ")
+            return self.solde
