@@ -68,7 +68,7 @@ def listeclients():
 #Renvoi la fiche d'un client
 @bp.route ('/agent/client/<int:client_id>')
 @login_agent_required
-def client(client_id):
+def thisclient(client_id):
         client=Client.query.get(client_id)
         dict_client=client.to_dict()
         return render_template('gestibank/agent/client.html', title="Page demande chequier ", name=dict_client['nom'])

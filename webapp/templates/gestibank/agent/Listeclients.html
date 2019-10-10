@@ -13,7 +13,7 @@
             </div>
                 </tr>
                 {% for dict_item in dict %}
-                    <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.client',client_id=dict_item['id'])}}';">
+                    <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.thisclient',client_id=dict_item['id'])}}';">
                         {% for value in dict_item.values() %}
 
                         {{value}}

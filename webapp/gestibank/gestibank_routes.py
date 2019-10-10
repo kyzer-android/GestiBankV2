@@ -3,7 +3,6 @@ from webapp.auth.models import login_admin_required, login_agent_required, login
 from webapp.gestibank import bp
 from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 from webapp.gestibank.form import InscriptionForm
-from webapp.gestibank.models.clients import Client
 
 #renvoi la page formulaire de demande de creation de compte
 @bp.route('/inscription', methods=['get', 'post'])
@@ -32,3 +31,8 @@ def admin(param=None):
 def agent(param=None):
         return render_template('gestibank/agent/index.html', title="Page Agent", param=param)
 
+#Renvoi la page d'index de l'utilisateur  connecter
+@bp.route ('/client/<int:param>')
+@login_client_required
+def client(param=None):
+        return render_template('gestibank/client/index.html', title="Page Client", param=param)
