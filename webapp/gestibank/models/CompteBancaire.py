@@ -69,3 +69,4 @@ class Comptes(db.Model):
             flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
 
             return self.solde
+

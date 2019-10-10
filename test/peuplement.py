@@ -4,6 +4,7 @@ from webapp import create_app
 from webapp.gestibank.models.admin import Admin
 from webapp.extension import db
 from webapp.gestibank.models.agents import Agent
+from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 from webapp.gestibank.models.transaction import Transaction
 from webapp.gestibank.models.user import User
 from webapp.gestibank.models.clients import Client
@@ -91,20 +92,38 @@ class Peuplement():
 
         with open('transaction.json', 'r') as JSON:
             json_dict = json.load(JSON)
-           
+
         for dict in json_dict:
             num_compte=random.choice(id_compte_list)
             compte=Comptes.query.get(num_compte)
-            compte.solde=compte.solde-dict['montant_operation']
+            compte.solde=compte.solde+dict['montant_operation']
             transaction = Transaction(montant_operation=dict['montant_operation'], libeler_operation=dict['libeller_operation'], nouveau_solde=compte.solde,
                             personne_tiers=dict['personne_tiers'], id_compte=num_compte,type_operation=dict['type_operation'])
             db.session.add(transaction)
             db.session.commit()
             db.session.close()
+    @classmethod
+    def peuplement_demande(cls):
+        with open('demandecrea.json', 'r') as JSON:
+            json_dict = json.load(JSON)
+        for dict in json_dict:
+            deamnde = DemandeCreacompte(username=dict['username'], nom=dict['nom'], prenom=dict['prenom'],
+                            password=User.password('123456789'),mail=dict['mail'], tel=dict['tel'], adresse=dict['adresse'])
+            db.session.add(deamnde)
+            db.session.commit()
+            db.session.close()
 
+        list_agent=['2','3','4','5','6']
+        for i in range(50):
+            demande=DemandeCreacompte.query.get(i+1)
+            demande.affect=random.choice(list_agent)
+            db.session.add(demande)
+            db.session.commit()
+            db.session.close()
 
 
 if __name__ == "__main__":
     Peuplement.peuplement_agent()
     Peuplement.peuplement_user()
     Peuplement.peuplement_transaction()
+    Peuplement.peuplement_demande()

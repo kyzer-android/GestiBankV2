@@ -20,7 +20,7 @@ from webapp.auth.models import login_admin_required, login_agent_required, login
 from webapp.gestibank import bp
 from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 from webapp.gestibank.form import InscriptionForm
-
+from webapp.gestibank.models.transaction import Transaction
 
 
 
@@ -29,10 +29,6 @@ from webapp.gestibank.form import InscriptionForm
 @login_client_required
 def historique():
    cl =current_user.lister_comptes()
-
-
-   cl=cl*5
-
    return render_template('gestibank/client/historique.html', cl=cl,keys=cl[0].keys())
 
 
@@ -40,9 +36,6 @@ def historique():
 @login_client_required
 def liste_compte():
    cl =current_user.lister_comptes()
-
-
-   cl=cl*5
 
    return render_template('gestibank/client/liste_compte.html', cl=cl,keys=cl[0].keys())
 
@@ -71,7 +64,6 @@ def demande_cheque():
 
 #renvoi la page formulaire de demande de virement
 @bp.route('/client/virement/<int:id_compte>', methods=['get', 'post'])
-
 def virement(id_compte):
     # x = Comptes.query.get(id_compte)
     formulaire = VirementForm()
@@ -89,3 +81,19 @@ def virement(id_compte):
             flash('Opération éffectue avec succés')
 
     return render_template('gestibank/client/virement.html',title="Virement", form=formulaire)
+
+
+
+
+@bp.route ('/client/historique_transaction/<int:id_compte>')
+@login_client_required
+def historique_transaction(id_compte):
+   transaction=Transaction.lister_transaction(id_compte)
+
+   return render_template('gestibank/client/historiquetransaction.html', list_dict=transaction,list_param=transaction[0].keys())
+
+@bp.route ('/client/compte_virement/')
+@login_client_required
+def compte_virement():
+   cl =current_user.lister_comptes()
+   return render_template('gestibank/client/compte_virement.html', cl=cl,keys=cl[0].keys())
