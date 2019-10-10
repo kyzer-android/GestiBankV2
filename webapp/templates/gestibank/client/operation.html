@@ -1,0 +1,36 @@
+{% extends "gestibank/client/index.html" %}
+{%block operationaction%}
+<h1><center> Operations </center></h1>
+
+<center>
+
+
+
+     <div id="l1"><button  id="button1"  onclick="window.location.href='{{url_for('gestibank.virement', id_compte=compte['id_compte'])}}';">
+        Effectuer un Virement
+     </button>
+     </div>
+
+<br>
+<br>
+    <br>
+     <div id="l3"><button  id="button"  onclick="window.location.href='{{url_for('gestibank.enconstruction', id_compte=compte['id_compte'])}}';">
+        Contacter votre Conseiller
+     </button>
+
+     </div>
+
+<br>
+<br>
+    <br>
+<div id="l2"><button  id="button2"  onclick="window.location.href='{{url_for('gestibank.enconstruction', id_compte=compte['id_compte'])}}';">
+        Demande de chéquier
+     </button>
+
+     </div>
+
+</center>
+
+{% endblock %}
+
+

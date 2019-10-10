@@ -42,8 +42,7 @@ class Comptes(db.Model):
             else:
                 flash(_l("Insertion Problem"))
 
-    def solvabilite(self,valeur_virement=0):
-        return self.sode >= valeur_virement
+
 
 
     def to_dict(self):
@@ -59,8 +58,15 @@ class Comptes(db.Model):
 
     def virement_d(self, montant):
         if (self.solde < montant):
-            return flash("Solde insufissant pour effectuer le virement")
+
+            flash("Solde insufissant pour effectuer le virement ")
+            flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
+
         else:
-            self.solde = self.solde - montant
+            self.solde = (self.solde) - (montant)
             print("Opération effectuer avec succés ")
+            print('le montant actuel : ',self.solde)
+            flash('Operation effectuée avec succès \n')
+            flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
+
             return self.solde

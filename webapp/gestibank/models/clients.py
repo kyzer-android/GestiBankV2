@@ -42,10 +42,3 @@ class Client(User):
             list_comptes.append(cpt.to_dict())
         return list_comptes
 
-    def virement_d(self, montant):
-        if (self.solde < montant):
-            return flash("Solde insufissant pour effectuer le virement")
-        else:
-            self.solde = (self.solde) - (montant)
-            print("Opération effectuer avec succés ")
-            return self.solde

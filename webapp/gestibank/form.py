@@ -1,10 +1,10 @@
 from flask_babel import lazy_gettext as _l
+from wtforms import FloatField, SelectField
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, RadioField, BooleanField, SelectField, FloatField
+from wtforms import StringField, PasswordField, SubmitField, RadioField, BooleanField,TextAreaField
 from wtforms.validators import DataRequired, Email, Length, Optional, EqualTo
-from webapp.gestibank.models.admin import Admin
 
-
+#Formulaire de demande de creation de compte utilisateur
 class InscriptionForm(FlaskForm):
     username = StringField(_l("Connexion identifier"),validators=[Length(min=8, max=25)])
     password = PasswordField(_l("password"), validators=[Length(min=8, max=25)])
@@ -16,6 +16,26 @@ class InscriptionForm(FlaskForm):
     adresse = StringField(_l("Adresse"), validators=[DataRequired()])
     justificatif = StringField(_l("Justificatif"), validators=[Optional()])
     submit = SubmitField(_l('Send'))
+
+class VirementForm(FlaskForm):
+        username = StringField(_l("Nom destinataire"), validators=[Length(min=8, max=25)])
+        rib = StringField(_l("Rib_Destinataire"), validators=[Length(min=8, max=30)])
+        montant = FloatField(_l('Montant'))
+        motif = StringField(_l("Motif virement"))
+
+        submit = SubmitField(_l('Valider'))
+
+class OperationForm(FlaskForm):
+
+
+            submit1 = SubmitField(_l('Virement'))
+            submit2 = SubmitField(_l('Demande Chequier'))
+            submit3 = SubmitField(_l('Contacter votre Conseiller'))
+
+class ContactForm(FlaskForm):
+                username = StringField(_l("Objet"), validators=[Length(min=2, max=30)])
+                message = TextAreaField(_l('Message'))
+                submit= SubmitField(_l('Envoyer'))
 
 
 class AgentForm(FlaskForm):
@@ -42,19 +62,11 @@ class ValidedemandFrom(FlaskForm):
 
 
 class AffectdemandFrom(FlaskForm):
+
     affect = SelectField(u'Programming Language')
     submit = SubmitField(_l('Send'))
-
-class VirementForm(FlaskForm):
-    username = StringField(_l("Nom destinataire"), validators=[Length(min=8, max=25)])
-    rib = StringField(_l("Rib_Destinataire"), validators=[Length(min=8, max=30)])
-    montant = FloatField(_l('Montant'))
-    motif = StringField(_l("Motif virement"))
-
-    submit = SubmitField(_l('Valider'))
+class ChiquedemandFrom(FlaskForm):
+    valide = RadioField("Valide", choices=[('True', 'Validation'),('False', 'En attente'),('None', 'Ne rien faire')])
+    submit = SubmitField(_l('Send'))
 
 
-class OperationForm(FlaskForm):
-    submit1 = SubmitField(_l('Virement'))
-    submit2 = SubmitField(_l('Demande Chequier'))
-    submit3 = SubmitField(_l('Contacter votre Conseiller'))
