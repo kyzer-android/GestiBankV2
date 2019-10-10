@@ -4,6 +4,14 @@
           <h1>Modifier Agent</h1>
     <form action='' method="post" >
         {{form.hidden_tag()}}
+          <p>
+            {{form.delete.label}}<br>
+            {{form.delete(size=32)}}
+            {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
         <p>
             {{dict['username']}}<br>
             {{form.username(size=32)}}

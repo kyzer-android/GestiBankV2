@@ -11,7 +11,7 @@
            </tr>
 
          {% for dict_item in list_dict %}
-         <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.modif_agent',parametre=dict_item['id_compte'])}}';">
+         <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.affect_demandcrea',optionadmin=dict_item['id_compte'])}}';">
 
              {% for value in dict_item.values() %}
                       {{value}}
