@@ -1,7 +1,6 @@
 {% extends "gestibank/admin/index.html" %}
 
 {%block adminaction%}
-<p>test</p>
      <div id="general">
         <tr class="tableau">
            <tr><div class="titre">
@@ -12,11 +11,11 @@
            </tr>
 
          {% for dict_item in list_dict %}
-         <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.modif_agent',parametre=dict_item['id'])}}';">
+         <div id="ligne">
 
              {% for value in dict_item.values() %}
                       {{value}}
-                    {% endfor %}</button></div>
+                    {% endfor %}</div>
               {% endfor %}
 
 

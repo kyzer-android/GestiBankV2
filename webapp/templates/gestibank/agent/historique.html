@@ -7,17 +7,17 @@
             <div id="general">
                 <tr class="tableau">
                     <tr><div class="titre">
-                        {% for key in list %}
+                        {% for key in list_param %}
                             <td class="celule">{{key}}</td>
                         {% endfor %}
             </div>
                 </tr>
-                {% for dict_item in dict %}
-                    <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.client',client_id=dict_item['id'])}}';">
+                {% for dict_item in list_dict %}
+                    <div id="ligne">
                         {% for value in dict_item.values() %}
 
                         {{value}}
-                        {% endfor%}</button></div>
+                        {% endfor%}</div>
                 {% endfor%}
             </div>
 

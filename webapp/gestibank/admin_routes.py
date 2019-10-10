@@ -69,7 +69,7 @@ def modif_agent(parametre):
 @login_admin_required
 def lister_demande_crea():
         test=Admin.lister_Demande_Crea()
-        return render_template('gestibank/admin/lister_demande.html', title="Page Admin",list_param=test[0].keys(),list_dict=test)
+        return render_template('gestibank/admin/historique.html', title="Page Admin",list_param=test[0].keys(),list_dict=test)
 
 
 @bp.route ('/admin/lister_demande', methods=['get', 'post'])
@@ -87,7 +87,7 @@ def lister_demande_non_affecter():
 
 
 #Renvoi formualire valide demande creation
-@bp.route ('/valid_demandcrea/<int:optionadmin>', methods=['get', 'post'])
+@bp.route ('/affect_demandcrea/<int:optionadmin>', methods=['get', 'post'])
 @login_admin_required
 def affect_demandcrea(optionadmin):
         demande = DemandeCreacompte.query.get(optionadmin)
