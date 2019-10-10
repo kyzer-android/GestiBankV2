@@ -46,6 +46,13 @@ class Agent(User):
             list_demandecrea.append(demande.todict())
         return list_demandecrea
 
+    def lister_les_clients(self):
+        clients = db.session.query(Client).filter(Client.id_agent == self.id).all()
+        list_client=[]
+        for demande in clients:
+            list_client.append(demande.to_dict())
+        return list_client
+
     # Retourne les clients gérée par l'agent NOK
     def filtre_clients(self):
         return db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == self.id,

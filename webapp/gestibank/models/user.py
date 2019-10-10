@@ -46,7 +46,7 @@ class User(UserMixin,db.Model):
         for user in args:
             db.session.add(user)
         db.session.commit()
-        db.session.close()
+
         #TODO raise exeption
 
     #Fonction de verification du token de réinistalisation de mot de passe
