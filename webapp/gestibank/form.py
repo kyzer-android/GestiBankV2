@@ -1,12 +1,9 @@
 from flask_babel import lazy_gettext as _l
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, RadioField, BooleanField, SelectField
+from flask_wtf import FlaskForm, widgets
+from wtforms import StringField, PasswordField, SubmitField, SelectMultipleField
 from wtforms.validators import DataRequired, Email, Length, Optional, EqualTo
-from webapp.gestibank.models.admin import Admin
+
 #Formulaire de demande de creation de compte utilisateur
-
-
-
 class InscriptionForm(FlaskForm):
     username = StringField(_l("Connexion identifier"),validators=[Length(min=8, max=25)])
     password = PasswordField(_l("password"), validators=[Length(min=8, max=25)])
@@ -29,24 +26,12 @@ class AgentForm(FlaskForm):
     submit = SubmitField(_l('Send'))
 
 class ModifagentForm(FlaskForm):
-    delete = BooleanField(_l("Delete account"))
+
     username = StringField(_l("Connexion identifier"))
     nom = StringField(_l("FirstName"))
     prenom = StringField(_l("Surname"))
     mail = StringField(_l("Email"))
     tel = StringField(_l("Phone number"))
     submit = SubmitField(_l('Send'))
-
-class ValidedemandFrom(FlaskForm):
-    valide = RadioField("Valide", choices=[('True', 'Validation'),('False', 'En attente'),('None', 'Ne rien faire')])
-    submit = SubmitField(_l('Send'))
-
-
-
-class AffectdemandFrom(FlaskForm):
-
-    affect = SelectField(u'Programming Language')
-    submit = SubmitField(_l('Send'))
-
 
 

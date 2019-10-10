@@ -3,6 +3,7 @@
 #sur un mois donné,imprimer des transactions
 from webapp import db
 from webapp.gestibank.models.user import User
+from flask import flash
 from webapp.extension import db
 from webapp.gestibank.models.CompteBancaire import TypeCompte, Comptes
 
@@ -34,11 +35,17 @@ class Client(User):
         return self.compte.query.all()
 
 
-
-
     def lister_comptes(self):
         comptes=Comptes.query.filter_by(id_client=self.id).all()
         list_comptes=[]
         for cpt in comptes:
             list_comptes.append(cpt.to_dict())
         return list_comptes
+
+    def virement_d(self, montant):
+        if (self.solde < montant):
+            return flash("Solde insufissant pour effectuer le virement")
+        else:
+            self.solde = (self.solde) - (montant)
+            print("Opération effectuer avec succés ")
+            return self.solde
