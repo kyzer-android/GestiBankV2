@@ -32,3 +32,14 @@ def admin(param=None):
 def agent(param=None):
         return render_template('gestibank/agent/index.html', title="Page Agent", param=param)
 
+#Renvoi la page d'index de l'Agent connecter
+@bp.route ('/client/<int:param>')
+@login_client_required
+def client(param=None):
+        return render_template('gestibank/client/index.html', title="Page client", param=param)
+
+#Renvoi la page d'index de l'Agent connecter
+@bp.route ('/enconstruction/')
+
+def enconstruction(param=None):
+        return render_template('gestibank/enconstruction.html', title="Page construction", param=param)
