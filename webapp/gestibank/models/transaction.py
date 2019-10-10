@@ -1,3 +1,4 @@
+
 import enum
 
 from webapp import db
@@ -16,7 +17,4 @@ class transaction(db.Model):
     type_operation=db.Column(db.Enum(TypeOP))
     personne_tiers=db.Column(db.String(50))
     id_compte = db.Column(db.Integer, db.ForeignKey('compte.id_compte'))
-
-
-
 
