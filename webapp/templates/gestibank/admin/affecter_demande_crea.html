@@ -1,0 +1,46 @@
+{% extends "gestibank/admin/index.html" %}
+
+{%block adminaction%}
+          <h1>Affecter  la demande de création de compte utilisateur</h1>
+    <form action='' method="post" >
+        {{form.hidden_tag()}}
+
+        <p> username: <br>
+            {{dict['username']}}
+        </p>
+        <p> nom: <br>
+            {{dict['nom']}}
+        </p>
+        <p> prenom: <br>
+            {{dict['prenom']}}
+        </p>
+        <p> mail: <br>
+            {{dict['mail']}}
+        </p>
+        <p> tel: <br>
+            {{dict['tel']}}
+        </p>
+
+        <p> adresse: <br>
+            {{dict['adresse']}}
+        </p>
+
+        <p> justificatif: <br>
+            {{dict['justificatif']}}
+        </p>
+
+        <p> Affecter: <br>
+            {{dict['affect']}}
+        </p>
+        <p>
+            {{form.affect.label}}<br>
+            {{form.affect}}<br>
+                  {% for error in form.affect.errors %}
+                <span style="color: green;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>{{form.submit()}}</p>
+
+    </form>
+{% endblock %}
