@@ -2,10 +2,50 @@
 
 {%block agentaction%}
 
-            <h1>Page du client {{name}} </h1>
+{%for i in increment%}
+  <center> <tr>
+       {%for col in keys[i]%}
+            {%if col=='rib' or col=='solde' or col=='type_compte'%}
+                <td>{{col}}</td>
+            {%endif%}
+        {% endfor %}
+    </tr><br>
+    <tr>
+        {%for key,value in dict_liste_compte[i].items()%}
+            {%if key=='rib' or key=='solde' or key=='type_compte'%}
+               <td> {{value}}</td>
+            {%endif%}
+        {% endfor %}
+    </tr><br>
+ <tr>
+       {%for col in list_param[i]%}
+            {%if col != 'id_operation' %}
+                <td>{{col}}</td>
+            {%endif%}
+        {% endfor %}
+    </tr><br>
 
 
+        {%for trans in list_transaction[i] %}
+        <tr>
+            {%for key,value in trans.items() %}
+            {%if col != 'id_operation' %}
+             <td>
+                {{value}}
+            </td>
+             {%endif%}
+            {% endfor %}
+        </tr><br>
+        {% endfor %}
 
 
+    <tr>
+        <td><img src="{{url_for( 'static', filename=list_path[i])}}"></td>
+        <hr>
+    </tr>
+   </center>
+
+
+{% endfor %}
 
 {% endblock %}

@@ -31,12 +31,14 @@ class Client(User):
                 "justificatif": self.justificatif
                 }
 
+
+
     def affche_compte(self):
         return self.compte.query.all()
 
-
+    # liste les diferent compte bancaire de l'utilisateur sur forme de dictionaire
     def lister_comptes(self):
-        comptes=Comptes.query.filter_by(id_client=self.id).all()
+        comptes = self.compte.all()
         list_comptes=[]
         for cpt in comptes:
             list_comptes.append(cpt.to_dict())

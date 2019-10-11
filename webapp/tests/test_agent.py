@@ -4,6 +4,7 @@ from webapp.gestibank.models.agents import Agent
 from webapp.extension import db
 import logging
 
+from webapp.gestibank.models.clients import Client
 from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 
 
@@ -27,19 +28,26 @@ class TestUser (unittest.TestCase):
     #     logging.debug(client)
     #     db.session.add(client)
     #     db.session.commit()
-
+    #
     # def test_lister_demandecrea(self):
     #     agent = Agent.query.get(2)
     #     list= agent.lister_demandecrea()
     #     logging.debug(list)
+    #
+    # def test_validation(self):
+    #     agent = Agent.query.get(5)
+    #     demande_crea = DemandeCreacompte.query.get(1)
+    #     agent.validation_Crea(demande_crea, True)
 
-    def test_validation(self):
-        agent = Agent.query.get(5)
-        demande_crea = DemandeCreacompte.query.get(1)
-        agent.validation_Crea(demande_crea, True)
-
+    def test_compte_client(self):
+        client = Client.query.get(36)
+        comptes = client.compte.all()
+        list_compte=[]
+        for compte in comptes:
+            list_compte.append(compte.to_dict())
+        print(list_compte[0].keys())
 
 
 
 if __name__ == "__main__":
-    unittest.main()
+     unittest.main()

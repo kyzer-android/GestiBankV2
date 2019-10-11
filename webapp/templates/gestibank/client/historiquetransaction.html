@@ -4,35 +4,23 @@
     <table>
     <thead>
     {%for col in list_param%}
-
    <div id="lig"> <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{col}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th></div>
-
     {% endfor %}
    </thead>
-
     <tbody>
-
-    {%for trans in transaction %}
-
-
-    <tr>
-
-
-        {%for value in trans.values() %}
-
-<td>
-    <center>
-                     {{value}}</center>
-
-</td>
+        {%for trans in transaction %}
+        <tr>
+            {%for value in trans.values() %}
+             <td>
+                <center>
+                         {{value}}
+                </center>
+            </td>
             {% endfor %}
-
-    </tr>
-             {% endfor %}
+        </tr>
+        {% endfor %}
     </tbody>
-
      </table></center>
-
     <tr><center>
         <td><center><img src="{{url_for( 'static', filename=path)}}"></center></td></center>
     </tr>

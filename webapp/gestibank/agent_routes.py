@@ -1,3 +1,4 @@
+import os
 from datetime import date
 
 from flask import flash, render_template, url_for
@@ -5,6 +6,7 @@ from flask_login import current_user
 from werkzeug.utils import redirect
 from webapp.auth.models import login_admin_required, login_agent_required, login_client_required
 from webapp.gestibank import bp
+from webapp.gestibank.models.CompteBancaire import Comptes
 from webapp.gestibank.models.clients import Client
 from webapp.gestibank.models.demandecreacompte import DemandeCreacompte
 from webapp.gestibank.form import ValidedemandFrom
@@ -14,6 +16,9 @@ import logging
 
 
 #Renvoi les nouvelles demande de création de l'Agent connecter (NONE)
+from webapp.gestibank.models.transaction import Transaction
+
+
 @bp.route ('/agent/nvldemande/')
 @login_agent_required
 def nvldemande():
@@ -63,15 +68,33 @@ def demandechequier():
 @login_agent_required
 def listeclients():
         list_agent= current_user.lister_les_clients()
-        return render_template('gestibank/agent/listeclients.html', title="Page demande chequier ", dict = list_agent,list=list_agent[0].keys())
+        return render_template('gestibank/agent/listeclients.html', title="Client List ", dict = list_agent,list=list_agent[0].keys())
 
 #Renvoi la fiche d'un client
 @bp.route ('/agent/client/<int:client_id>')
 @login_agent_required
 def thisclient(client_id):
         client=Client.query.get(client_id)
-        dict_client=client.to_dict()
-        return render_template('gestibank/agent/client.html', title="Page demande chequier ", name=dict_client['nom'])
+        comptes=client.lister_comptes()
+        list_path=[]
+        list_transaction=[]
+        i=[]
+        j=0
+        list_param=[]
+        keys=[]
+        for compte in comptes:
+            i.append(j)
+            j=j+1
+            trs=Transaction.lister_transaction(compte["id_compte"])
+            keys.append(compte.keys())
+            list_param.append(trs[0].keys())
+            list_transaction.append(trs)
+            cp = Comptes.query.get(compte["id_compte"])
+            cp.graph_transaction()
+            print(i)
+            list_path.append(os.path.join('img/img_compte/' + str(compte["id_compte"]) + ".png"))
+        return render_template('gestibank/agent/client.html', title="This Client ", keys=keys , dict_liste_compte=comptes,
+                              list_transaction=list_transaction,list_path=list_path,increment=i,list_param=list_param)
 
 #Renvoi formualire valide demande creation
 @bp.route ('/agent/valid_demandcrea/<int:option>', methods=['get', 'post'])

@@ -50,18 +50,12 @@ def demande_cheque():
 #renvoi la page formulaire de demande de virement
 @bp.route('/client/virement/<int:id_compte>', methods=['get', 'post'])
 def virement(id_compte):
-    # x = Comptes.query.get(id_compte)
     formulaire = VirementForm()
-
     if formulaire.validate_on_submit() and  current_user.is_authenticated == True :
         try :
-
             Comptes.query.get(id_compte).virement_d(formulaire)
-
-
         except ValueError as e:
             flash(e)
-
     return render_template('gestibank/client/virement.html',title="Virement", form=formulaire)
 
 

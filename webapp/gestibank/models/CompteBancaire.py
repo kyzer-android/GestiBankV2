@@ -41,7 +41,7 @@ class Comptes(db.Model):
                 type_compte = 'COURANT',
                 date_creation = date.today(),
                 rib = str(random.randint(1000000000, 9999999999)),
-                solde = str(random.randint(1000, 9999)),
+                solde =  random.random()*1000,
                 id_client=client.id
                 )
                 User.populate(this_comtpe)
