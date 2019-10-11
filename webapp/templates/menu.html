@@ -2,85 +2,116 @@
 <html >
 
 
-<script>
-function LangueFonction(value) {
-  var str = document.URL;
-  var n = str.search("lang");
 
-   if (n != -1){
-         var url_debut = str.substring(0,n+5);
-         var url_fin = str.substring(n+7);
-         var final_url=url_debut+value+url_fin;
-         }
-    else { var final_url=document.URL+"?lang="+value;}
-         location.href =final_url;
-}
-</script>
     <head>
 
         <meta charset="UTF-8">
+
         {%if title %}
-            <title>Microblog - {{ title }}</title>
+            <title>GestiBank - {{ title }}</title>
         {% else %}
-            <title>{{_('Welcome to Microblog')}}</title>
+            <title>{{_('Welcome to GestiBank')}}</title>
         {% endif %}
         {% block css %}{% endblock %}
         <link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/style.css')}}" >
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+        <link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/bootstrap/css/bootstrap.min.css')}}" >
+
+        {% block scripts %}{% endblock %}
+        <script type="text/javascript" src="{{url_for('static', filename='style/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script>
+            function LangueFonction(value) {
+              var str = document.URL;
+              var n = str.search("lang");
+
+               if (n != -1){
+                     var url_debut = str.substring(0,n+5);
+                     var url_fin = str.substring(n+7);
+                     var final_url=url_debut+value+url_fin;
+                     }
+                else { var final_url=document.URL+"?lang="+value;}
+                     location.href =final_url;
+            }
+
+        </script>
+
     </head>
 
-    Microdsqblog:
-     </br>
+
     <body>
-    <div id="cadre" style="static;">
-        {% if current_user.is_anonymous %}
-            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("main.index")}}'>{{_('Home')}}</a></div>
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.inscription")}}'>{{_('Registration')}}</a></div>
-        {%endif%} {% if current_user.type=='admin' %}
-            <div class="ligne" style=";border-color:blue">  <a href="{{url_for('gestibank.admin', param=1)}}">{{_('Gestion des Agents')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href="{{url_for('gestibank.admin',param=2)}}">{{_('Gestion des Demandes')}}</a></div>
-         {%endif%} {% if current_user.type=='agent' %}
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.agent",param=1)}}'>{{_('Gestion des Clients')}}</a></div>
-        <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.agent",param=2)}}'>{{_('Gestion des Demandes')}}</a></div>
-        {%endif%} {% if current_user.type=='client' %}
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=1)}}'>{{_('comptes')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=2)}}'>{{_('virement')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=3)}}'>{{_('Other')}}</a></div>
-        {%endif%}
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href='{{url_for("main.index")}}'>
+                    <img src="/static/img/Gestibank_white.png" width="50" height="50" alt="logo GestiBank" >
+                </a>
+                <div class="navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        {% if current_user.is_anonymous %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("main.index")}}'>{{_('Home')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("gestibank.inscription")}}'>{{_('Registration')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        {%endif%} {% if current_user.type=='admin' %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("gestibank.admin", param=1)}}'>{{_('Gestion des Agents')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("gestibank.admin", param=2)}}'>{{_('Gestion des Demandes')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        {%endif%} {% if current_user.type=='agent' %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("gestibank.agent",param=1)}}'>{{_('Gestion des Clients')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("gestibank.agent",param=2)}}'>{{_('Gestion des Demandes')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        {%endif%} {% if current_user.type=='client' %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("gestibank.liste_compte")}}'>{{_('comptes')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("gestibank.compte_virement")}}'>{{_('virement')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href='{{url_for("gestibank.historique")}}'>{{_('Other')}}<span class="sr-only">(current)</span></a>
+                        </li>
+                        {%endif%}
+                    </ul>
+                    {% if current_user.is_anonymous %}
+                    <form class="form-inline my-2 my-lg-0 " action='{{url_for("auth.login")}}'>
+                        <button style="position: absolute; right: 0;" class="btn btn-outline-warning my-2 my-sm-0" >{{_('Connection')}}</button>
+                    </form>
+                    {% else %}
+                    <form class="form-inline my-2 my-lg-0 " action='{{url_for("auth.logout")}}'>
+                        <button style="position: absolute; right: 0;" class="btn btn-outline-warning my-2 my-sm-0" >{{_('Disconnect')}}</button>
+                    </form>
+                    {%endif%}
 
-    </div>
 
-        {% if current_user.is_anonymous %}
-         <div id="connexion" style="border-color:red;"><a href='{{url_for("auth.login")}}'>{{_('Connection')}}</a></div>
-        {% else %}
-        <div id="connexion" style="border-color:black;"><a href='{{url_for("auth.logout")}}'>{{_('Disconnect')}}</a></div>
-        {%endif%}
-        <div id="langue">
-            <label for="pet-select">{{_('Choose a Language')}}:</label>
+                    <div id="langue">
+                        <label for="pet-select">{{_('Choose a Language')}}:</label>
 
-            <select id="pet-select" onchange="LangueFonction(value)">
-                <option value="">{{_('--Please choose an option--')}}</option>
-                <option value="fr">{{_('french')}}</option>
-                <option value="en">{{_('English')}}</option>
-                <option value="de">{{_('Deutch')}}</option>
-            </select>
+                        <select id="pet-select" onchange="LangueFonction(value)">
+                            <option value="">{{_('--Please choose an option--')}}</option>
+                            <option value="fr">{{_('french')}}</option>
+                            <option value="en">{{_('English')}}</option>
+                            <option value="de">{{_('Deutch')}}</option>
+                        </select>
+                    </div>
+                </div>
+            </nav>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                         <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
 
-        </div>
-
-
-    </br> </br> </br>
-
-    <hr>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                     <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-
-    {% block mybody %}{% endblock %}
+        {% block mybody %}{% endblock %}
     </body>
 </html>
 
