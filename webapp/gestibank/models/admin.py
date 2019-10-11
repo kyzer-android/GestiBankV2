@@ -28,7 +28,7 @@ class Admin(User):
     def affecter_demande(cls, demande, agent_id):
         demande.affectation(agent_id)
 
-
+    # Methode de classe permetant la creation d'un agent
     @classmethod
     def cree_agent(cls, formulaire):  # Stocakge d'une demmande dans la base de donnee (table demande)
         pwd=str(random. randint(10000, 50000))
@@ -47,6 +47,7 @@ class Admin(User):
         flash ("compte crée et email envoyer")
         db.session.close()
 
+    # Methode de classe permetant MODIFICATION D'UN Agent
     @classmethod
     def modifier_agent(cls,formulaire,agent):  # Stocakge d'une demmande dans la base de donnee (table demande)
         logging.debug(formulaire)
@@ -63,6 +64,7 @@ class Admin(User):
         db.session.commit()
         flash("compte Agent Modifier")
 
+    # Methode de classe permetant de lister l'integralité des agents
     @classmethod
     def lister_agent(cls):
         agents=Agent.query.all()
@@ -73,22 +75,32 @@ class Admin(User):
         list=(param,list_agents)
         return list
 
+    # Methode de classe permetant de lister l'integralité des demande de creation de compte
     @classmethod
     def lister_Demande_Crea(cls):
         demandes = DemandeCreacompte.query.all()
         list_demande = []
         for demande in demandes:
             list_demande.append(demande.todict())
-            param = demande.list_param()
-        list = (param, list_demande)
-        return list
+        return list_demande
 
+    # Methode de classe permetant de lister les demandes non affecter
     @classmethod
     def lister_demande_non_affecter(cls):
         demandes =db.session.query(DemandeCreacompte).filter(DemandeCreacompte.affect == None)
         list_demande = []
         for demande in demandes:
             list_demande.append(demande.todict())
-            param = demande.list_param()
-        list = (param, list_demande)
-        return list
+        return list_demande
+
+    # Methode de classe permetant creant la liste des agent pour l'affectation
+    @classmethod
+    def Choicelist_agent(cls):
+        agents = Agent.query.all()
+        list_agents = []
+        for agent in agents:
+            list_agents.append(agent.todict())
+        final_list = []
+        for list in list_agents:
+            final_list.append((list['id'], list['username']))
+        return final_list

@@ -1,6 +1,6 @@
  {% extends "gestibank/client/index.html" %}
 {%block clientaction%}
-<h1><center>Historique de comptes </center></h1>
+<h1><center>Selectionner un compte pour voir l'historique des transaction </center></h1>
         <center>
     <table>
     <thead>
@@ -15,7 +15,7 @@
     <tbody>
     {%for compte in cl %}
     <tr>
-        <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.operation', id_compte=compte['id_compte'])}}';">
+        <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.historique_transaction', id_compte=compte['id_compte'])}}';">
 
         {%for key,value in compte.items()%}
             {%if key=='rib' or key=='solde' or key=='type_compte'%}

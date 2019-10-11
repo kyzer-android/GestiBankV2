@@ -11,11 +11,11 @@ from webapp.extension import db
 class User(UserMixin,db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50))
+    username = db.Column(db.String(50),unique=True)
     password_hash = db.Column(db.String(150))
     nom = db.Column(db.String(50))
     prenom = db.Column(db.String(50))
-    email = db.Column(db.String(50))
+    email = db.Column(db.String(50),unique=True)
     type = db.Column(db.String(50))
 
     __mapper_args__ = {
@@ -46,7 +46,7 @@ class User(UserMixin,db.Model):
         for user in args:
             db.session.add(user)
         db.session.commit()
-        db.session.close()
+
         #TODO raise exeption
 
     #Fonction de verification du token de réinistalisation de mot de passe
