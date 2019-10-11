@@ -2,25 +2,24 @@
 
 {%block agentaction%}
 
-            <h1>retour de la liste des demande affecté à l'agent </h1>
-
-            <div id="general">
-                <tr class="tableau">
-                    <tr><div class="titre">
-                        {% for key in list_param %}
-                            <td class="celule">{{key}}</td>
-                        {% endfor %}
-            </div>
+            <h1 class="text-center">retour de la liste des demande affecté à l'agent </h1>
+        <table class="table table-hover table-bordered" id="general">
+            <thead class="thead-light">
+                <tr>
+                    {% for key in list_param %}
+                        <th scope="col" class="celule">{{key}}</th>
+                    {% endfor %}
                 </tr>
+            </thead>
+            <tbody>
                 {% for dict_item in list_dict %}
-                    <div id="ligne">
+                    <tr>
                         {% for value in dict_item.values() %}
-
-                        {{value}}
-                        {% endfor%}</div>
+                            <td>{{value}}</td>
+                        {% endfor%}
+                    </tr>
                 {% endfor%}
-            </div>
-
-
+            </tbody>
+        </table>
 
 {% endblock %}

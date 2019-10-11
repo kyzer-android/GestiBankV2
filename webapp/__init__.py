@@ -10,6 +10,7 @@ from webapp.api import bp as api_bp
 from webapp.gestibank import bp as gesti_bp
 
 #Fonction de création de l'application et d'initialisation des diferents objets de l'application
+
 def create_app(config_class=Config):
     app = Flask(__name__)
 

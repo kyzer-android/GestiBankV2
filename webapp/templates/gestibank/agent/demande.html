@@ -2,25 +2,28 @@
 
 {%block agentaction%}
 
-            <h1>retour de la liste des demande affecté à l'agent </h1>
+            <h1 class="text-center">retour de la liste des demande affecté à l'agent </h1>
 
-            <div id="general">
-                <tr class="tableau">
-                    <tr><div class="titre">
-                        {% for key in list_param %}
-                            <td class="celule">{{key}}</td>
-                        {% endfor %}
-            </div>
+
+        <table class="table table-hover table-bordered text-center" id="general" style="size: 50%;">
+            <thead class="thead-light">
+                <tr>
+                    {% for key in list_param %}
+                        <th scope="col" class="celule">{{key}}</th>
+                    {% endfor %}
+                        <th scope="col" class="celule">Modifier</th>
                 </tr>
-                {% for dict_item in list_dict %}
-                    <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.valid_demandcrea',option=dict_item['id_compte'])}}';">
-                        {% for value in dict_item.values() %}
-
-                        {{value}}
-                        {% endfor%}</button></div>
-                {% endfor%}
-            </div>
-
-
+            </thead>
+            <tbody>
+                    {% for dict_item in list_dict %}
+                        <tr>
+                            {% for value in dict_item.values() %}
+                                <td>{{value}}</td>
+                            {% endfor%}
+                            <td><button class="btn btn-outline-warning" onclick="window.location.href='{{url_for('gestibank.valid_demandcrea',option=dict_item['id_compte'])}}';">OK</button></td>
+                        </tr>
+                    {% endfor%}
+            </tbody>
+        </table>
 
 {% endblock %}
