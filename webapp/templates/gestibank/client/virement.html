@@ -11,6 +11,13 @@
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+          <p>
+            {{form.destinataire.label}}<br>
+            {{form.destinataire(size=32)}}
+            {% for error in form.destinataire.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>
             {{form.rib.label}}<br>
             {{form.rib(size=32)}}

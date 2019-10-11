@@ -76,7 +76,6 @@ def historique_transaction(id_compte):
    path=os.path.join('img/img_compte/'+str(id_compte)+".png")
    return render_template('gestibank/client/historiquetransaction.html', transaction=transaction,list_param=transaction[0].keys(),path=path)
 
-   return render_template('gestibank/client/historiquetransaction.html', transaction=transaction,list_param=transaction[0].keys())
 
 @bp.route ('/client/compte_virement/')
 @login_client_required

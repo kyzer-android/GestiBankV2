@@ -18,7 +18,8 @@ class InscriptionForm(FlaskForm):
     submit = SubmitField(_l('Send'))
 
 class VirementForm(FlaskForm):
-        username = StringField(_l("Nom destinataire"), validators=[Length(min=8, max=25)])
+        username = StringField(_l("Nom Emeteur"))
+        destinataire = StringField(_l("Nom destinataire"))
         rib = StringField(_l("Rib_Destinataire"), validators=[Length(min=8, max=30)])
         montant = FloatField(_l('Montant'))
         motif = StringField(_l("Motif virement"))

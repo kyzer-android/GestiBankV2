@@ -80,16 +80,22 @@ class Comptes(db.Model):
                 print('Le montant actuel : ', self.solde)
                 flash('Operation effectuée avec succès \n')
                 flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
-
-                transaction = Transaction(montant_operation=montant,
+                #transaction de l'emeteur
+                transaction = Transaction(montant_operation=-montant,
                                         libeler_operation=formulaire.motif.data, nouveau_solde=self.solde,
-                                         personne_tiers=formulaire.username.data, id_compte=self.id_compte,
-                                          type_operation='virement')
-
+                                         personne_tiers=formulaire.destinataire.data, id_compte=self.id_compte,
+                                          type_operation='virement',date_operation=date.today())
                 db.session.add(transaction)
+                #transaction du destinataire
+                transaction2 = Transaction(montant_operation=montant,
+                                          libeler_operation=formulaire.motif.data, nouveau_solde=destinataire.solde,
+                                          personne_tiers=formulaire.username.data, id_compte=destinataire.id_compte,
+                                          type_operation='virement', date_operation=date.today())
+
+                db.session.add(transaction2)
 
                 db.session.commit()
-               # db.session.close()
+
 
         else :
                 flash('Erreur de montant')

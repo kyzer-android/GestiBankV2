@@ -1,5 +1,5 @@
-{% extends "gestibank/agent/index.html" %}
-
+{% extends "gestibank/client/index.html" %}
+    {%block transationaction%}
         <center>
     <table>
     <thead>
@@ -32,7 +32,10 @@
     </tbody>
 
      </table></center>
-   <img class="fit-picture"
-     src="{{url_for( 'static', filename=path)}}"
-     alt="Grapefruit slice atop a pile of other slices">
+
+    <tr><center>
+        <td><center><img src="{{url_for( 'static', filename=path)}}"></center></td></center>
+    </tr>
+
+
 {% endblock %}
