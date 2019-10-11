@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, session, current_app
 from config import Config
 
@@ -21,6 +23,8 @@ def create_app(config_class=Config):
     app.register_blueprint(main_bp)
     app.register_blueprint(api_bp)
     app.register_blueprint(gesti_bp)
+    app.__setattr__('chemin', os.path.dirname(os.path.realpath(__file__)))
+
     with app.app_context():
         from webapp.main import filter
     return app

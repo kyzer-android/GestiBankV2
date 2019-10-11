@@ -1,11 +1,18 @@
+import logging
+import os.path
 from datetime import date
 from flask_babel import lazy_gettext as _l
-from flask import flash
+from flask import flash, current_app
 import random
-from webapp import db
+import matplotlib.pyplot as plt
+from sqlalchemy import asc
+from webapp.extension import db
+
+#from webapp import Chemin
 import enum
 
 
+from webapp.gestibank.models.transaction import Transaction
 from webapp.gestibank.models.user import User
 
 
@@ -70,3 +77,20 @@ class Comptes(db.Model):
 
             return self.solde
 
+    def graph_transaction(self):
+        transaction = db.session.query(Transaction).filter(Transaction.id_compte == self.id_compte).order_by(asc(Transaction.date_operation)).all()
+        list_transaction = []
+        liste_date_transaction = []
+        for trans in transaction:
+            list_transaction.append(trans.todict()['nouveau_solde'])
+
+            liste_date_transaction.append(trans.todict()['date_operation'])
+        logging.info("solde", list_transaction)
+        logging.info("date", liste_date_transaction)
+        plt.figure(figsize=(13, 4))
+        plt.plot(liste_date_transaction, list_transaction)
+        plt.xlabel('date')
+        plt.ylabel('solde')
+        chemin= os.path.join(current_app.chemin+"\static\img\img_compte\\",self.id_compte+".png")
+        plt.savefig(chemin)
+        return(chemin)

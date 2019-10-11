@@ -17,6 +17,7 @@ class Transaction(db.Model):
     type_operation=db.Column(db.Enum(TypeOP))
     personne_tiers=db.Column(db.String(50))
     id_compte = db.Column(db.Integer, db.ForeignKey('compte.id_compte'))
+    date_operation = db.Column(db.Date)
 
 
     def todict(self):
@@ -26,7 +27,8 @@ class Transaction(db.Model):
                 "libeler_operation":self.libeler_operation,
                 "nouveau_solde":self.nouveau_solde,
                 "type_operation": self.type_operation,
-                "personne_tiers": self.personne_tiers
+                "personne_tiers": self.personne_tiers,
+                "date_operation":str(self.date_operation)
 
                 }
 

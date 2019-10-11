@@ -93,15 +93,27 @@ class Peuplement():
         with open('transaction.json', 'r') as JSON:
             json_dict = json.load(JSON)
 
+        with open('date.json', 'r') as JSON:
+            json_date = json.load(JSON)
+
+        mydate = []
+        for date in json_date:
+            mydate.append(date['date'])
+
+
         for dict in json_dict:
+            strDate = str(random.choice(mydate))
             num_compte=random.choice(id_compte_list)
             compte=Comptes.query.get(num_compte)
             compte.solde=compte.solde+dict['montant_operation']
             transaction = Transaction(montant_operation=dict['montant_operation'], libeler_operation=dict['libeller_operation'], nouveau_solde=compte.solde,
-                            personne_tiers=dict['personne_tiers'], id_compte=num_compte,type_operation=dict['type_operation'])
+                            personne_tiers=dict['personne_tiers'], id_compte=num_compte,type_operation=dict['type_operation'],date_operation=datetime.strptime(strDate, '%m/%d/%y'))
             db.session.add(transaction)
             db.session.commit()
             db.session.close()
+
+
+
     @classmethod
     def peuplement_demande(cls):
         with open('demandecrea.json', 'r') as JSON:

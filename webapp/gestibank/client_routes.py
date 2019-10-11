@@ -1,3 +1,5 @@
+import os
+
 from flask import flash, render_template
 
 from webapp import db
@@ -89,8 +91,10 @@ def virement(id_compte):
 @login_client_required
 def historique_transaction(id_compte):
    transaction=Transaction.lister_transaction(id_compte)
-
-   return render_template('gestibank/client/historiquetransaction.html', list_dict=transaction,list_param=transaction[0].keys())
+   compte=Comptes.query.get(id_compte)
+   compte.graph_transaction()
+   path=os.path.join('img/img_compte/'+str(id_compte)+".png")
+   return render_template('gestibank/client/historiquetransaction.html', list_dict=transaction,list_param=transaction[0].keys(),path=path)
 
 @bp.route ('/client/compte_virement/')
 @login_client_required
