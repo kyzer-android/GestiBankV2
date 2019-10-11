@@ -39,3 +39,5 @@ class Transaction(db.Model):
         for demande in clients:
             list_transaction.append(demande.todict())
         return list_transaction
+
+
