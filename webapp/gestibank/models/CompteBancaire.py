@@ -55,27 +55,44 @@ class Comptes(db.Model):
         return {
                 "id_compte": self.id_compte,
                 "id_client":self.id_client,
-                "type_compte":str(self.type_compte),
+                "type_compte":(self.type_compte).name,
                 "rib":self.rib,
                 "solde": str(self.solde) +(' € '),
                 "date_creation": self.date_creation,
 
                 }
 
-    def virement_d(self, montant):
-        if (self.solde < montant):
+    def virement_d(self, formulaire):
+        montant=formulaire.montant.data
+        destinataire=Comptes.query.filter_by(rib=formulaire.rib.data).first()
 
-            flash("Solde insufissant pour effectuer le virement ")
-            flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
+        if (montant>0):
+            if (self.solde <  montant):
 
-        else:
-            self.solde = (self.solde) - (montant)
-            print("Opération effectuer avec succés ")
-            print('le montant actuel : ',self.solde)
-            flash('Operation effectuée avec succès \n')
-            flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
+                flash("Solde insufissant pour effectuer le virement ")
+                flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
 
-            return self.solde
+            elif destinataire is not None :
+
+                self.solde -= montant
+                destinataire.solde += montant
+                print("Opération effectuée avec succés ")
+                print('Le montant actuel : ', self.solde)
+                flash('Operation effectuée avec succès \n')
+                flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
+
+                transaction = Transaction(montant_operation=montant,
+                                        libeler_operation=formulaire.motif.data, nouveau_solde=self.solde,
+                                         personne_tiers=formulaire.username.data, id_compte=self.id_compte,
+                                          type_operation='virement')
+
+                db.session.add(transaction)
+
+                db.session.commit()
+               # db.session.close()
+
+        else :
+                flash('Erreur de montant')
 
     def graph_transaction(self):
         transaction = db.session.query(Transaction).filter(Transaction.id_compte == self.id_compte).order_by(asc(Transaction.date_operation)).all()
