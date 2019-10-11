@@ -1,15 +1,26 @@
 {% extends "menu.html" %}
 {% block mybody %}
-    <div id="cadre" style="static;">
-        {% if param==1 %}
-            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("gestibank.listeclients")}}'>{{_('liste des clients')}}</a></div>
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.demandechequier")}}'>{{_('demande de chequier')}}</a></div>
-        {%endif%} {% if param==2 %}
 
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.demande")}}'>{{_('Historique des demandes')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.nvldemande")}}'>{{_('Lister nouvelles  demande')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.demandeenattente")}}'>{{_('Lister les demande en attente')}}</a></div>
-         {%endif%}
-    </div>
+{% if param==1 %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+        <form class="form-inline my-2 my-lg-0 " action='{{url_for("gestibank.listeclients")}}'>
+            <button  class="btn btn-light" >{{_('liste des clients')}}</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0 " style="padding-left: 25px;" action='{{url_for("gestibank.demandechequier")}}'>
+            <button  class="btn btn-light" >{{_('demande de chequier')}}</button>
+        </form>
+    </nav>{%endif%}
+{% if param==2 %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+          <form class="form-inline my-2 my-lg-0 " action='{{url_for("gestibank.demande")}}'>
+            <button  class="btn btn-light" >{{_('Historique des demandes')}}</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0  " style="padding-left: 25px;"  action='{{url_for("gestibank.nvldemande")}}'>
+            <button  class="btn btn-light" >{{_('Lister nouvelles  demande')}}</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0 " style="padding-left: 25px;" action='{{url_for("gestibank.demandeenattente")}}'>
+            <button  class="btn btn-light" >{{_('Lister les demande en attente')}}</button>
+        </form>
+    </nav>{%endif%}
         {%block agentaction%}{% endblock %}
 {% endblock %}

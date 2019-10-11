@@ -1,14 +1,23 @@
 {% extends "menu.html" %}
 {% block mybody %}
-    <div id="cadre" style="static;">
-        {% if param==1 %}
-            <div class="ligne" style=";border-color:purple">  <a href='{{url_for("gestibank.gestion_agent")}}'>{{_('Crée un agent')}}</a></div>
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.modifier_agent")}}'>{{_('Modifier un agent')}}</a></div>
-        {%endif%} {% if param==2 %}
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.lister_demande_crea")}}'>{{_('Lister Toutes demande')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.lister_demande_non_affecter")}}'>{{_('Lister les demande non affecter')}}</a></div>
-         {%endif%}
-    </div>
+{% if param==1 %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+        <form class="form-inline my-2 my-lg-0 " action='{{url_for("gestibank.gestion_agent")}}'>
+            <button  class="btn btn-light" >{{_('Crée un agent')}}</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0 " style="padding-left: 25px;" action='{{url_for("gestibank.modifier_agent")}}'>
+            <button  class="btn btn-light" >{{_('Modifier un agent')}}</button>
+        </form>
+    </nav>{%endif%}
+{% if param==2 %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+        <form class="form-inline my-2 my-lg-0 " action='{{url_for("gestibank.lister_demande_crea")}}'>
+            <button  class="btn btn-light" >{{_('Lister Toutes demande')}}</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0 " style="padding-left: 25px;" action='{{url_for("gestibank.lister_demande_non_affecter")}}'>
+            <button  class="btn btn-light" >{{_('Lister les demande non affecter')}}</button>
+        </form>
+    </nav>{%endif%}
 <div id="top">{%block adminaction%}{% endblock %}</div>
 <div id="bottom">{%block agentmodifform%}{% endblock %}</div>
 {% endblock %}

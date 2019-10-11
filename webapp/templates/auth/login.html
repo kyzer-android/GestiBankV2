@@ -1,32 +1,34 @@
 {% extends "menu.html" %}
     {% block mybody %}
+<body class="text-center">
 
-<h1>{{_('Connection')}}</h1>
-    <form action="" method="post" novalidate>
-        {{form.hidden_tag()}}
-        <p>
-            {{form.username.label}}<br>
-            {{form.username(size=32)}}
-            {% for error in form.username.errors %}
-                <span style="color: red">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{form.password.label}}<br>
-            {{form.password(size=32)}}
-                  {% for error in form.password.errors %}
-                <span style="color: blue">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{form.remember_me()}}
-            {{form.remember_me.label}}
-        </p>
-        <p>{{form.submit()}}</p>
+    <div>
+        <img src="/static/img/Gestibank_black.png" width="100" height="100" alt="logo GestiBank" >
+        <h1 class="h3 mb-3 font-weight-normal">{{_('Connection')}}</h1>
+            <form class="form-signin" action="" method="post" novalidate>
+                {{form.hidden_tag()}}
+                <p>
+                    {{form.username(size=32, placeholder=form.username.label.text)}}
+                    {% for error in form.username.errors %} <br>
+                        <span style="color: red">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{form.password(size=32, placeholder=form.password.label.text)}}
+                          {% for error in form.password.errors %} <br>
+                        <span style="color: blue">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{form.remember_me()}}
+                    {{form.remember_me.label}}
+                </p>
+                <p>{{form.submit(class="btn btn-lg btn-primary")}}</p>
 
-        <p>{{_('Forgoten Password')}}
-        <a href='{{url_for("auth.reset_password_request")}}'>{{_('Reset')}}</a>
-        </p>
-    </form>
-
+                <p>{{_('Forgoten Password')}} ?
+                <a href='{{url_for("auth.reset_password_request")}}'>{{_('Reset')}}</a>
+                </p>
+            </form>
+    </div>
 {% endblock %}
+</body>
