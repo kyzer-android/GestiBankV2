@@ -57,7 +57,8 @@ class Comptes(db.Model):
 
                 }
 
-    def virement_d(self, montant):
+    def virement_d(self, formulaire):
+        montant=formulaire.montant.data
         if (self.solde < montant):
 
             flash("Solde insufissant pour effectuer le virement ")
