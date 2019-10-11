@@ -68,17 +68,14 @@ def virement(id_compte):
     # x = Comptes.query.get(id_compte)
     formulaire = VirementForm()
 
-    if formulaire.validate_on_submit() and  current_user.is_authenticated ==True :
+    if formulaire.validate_on_submit() and  current_user.is_authenticated == True :
         try :
 
-            Comptes.query.get(id_compte).virement_d(formulaire.montant.data)
+            Comptes.query.get(id_compte).virement_d(formulaire)
 
-            db.session.commit()
 
         except ValueError as e:
             flash(e)
-        else :
-            flash('Opération éffectue avec succés')
 
     return render_template('gestibank/client/virement.html',title="Virement", form=formulaire)
 
@@ -90,7 +87,7 @@ def virement(id_compte):
 def historique_transaction(id_compte):
    transaction=Transaction.lister_transaction(id_compte)
 
-   return render_template('gestibank/client/historiquetransaction.html', list_dict=transaction,list_param=transaction[0].keys())
+   return render_template('gestibank/client/historiquetransaction.html', transaction=transaction,list_param=transaction[0].keys())
 
 @bp.route ('/client/compte_virement/')
 @login_client_required

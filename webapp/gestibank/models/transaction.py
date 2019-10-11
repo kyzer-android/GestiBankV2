@@ -25,7 +25,7 @@ class Transaction(db.Model):
                 "montant_operation":self.montant_operation,
                 "libeler_operation":self.libeler_operation,
                 "nouveau_solde":self.nouveau_solde,
-                "type_operation": self.type_operation,
+                "type_operation": self.type_operation.name,
                 "personne_tiers": self.personne_tiers
 
                 }

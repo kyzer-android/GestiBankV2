@@ -1,26 +1,42 @@
-{% extends "gestibank/agent/index.html" %}
+{% extends "gestibank/client/index.html" %}
 
-{%block agentaction%}
-<link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/style.css')}}" >
-            <h1>retour de la liste des demande affecté à l'agent </h1>
-
-            <div id="general">
-                <tr class="tableau">
-                    <tr><div class="titre">
-                        {% for key in list_param %}
-                            <td class="celule">{{key}}</td>
-                        {% endfor %}
-            </div>
-                </tr>
-                {% for dict_item in list_dict %}
-                    <div  id="ligne">
-                        {% for value in dict_item.values() %}
-
-                        <td class="celule"> {{value}}</td>
-                        {% endfor%}</div>
-                {% endfor%}
-            </div>
+{%block transationaction%}
 
 
+<h1><center>Historique de Transations </center></h1>
+<br><br><br>
+
+        <center>
+    <table>
+    <thead>
+    {%for col in list_param%}
+
+   <div id="lig"> <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{col}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th></div>
+
+    {% endfor %}
+   </thead>
+
+    <tbody>
+
+    {%for trans in transaction %}
+
+
+    <tr>
+
+
+        {%for value in trans.values() %}
+
+<td>
+    <center>
+                     {{value}}</center>
+
+</td>
+            {% endfor %}
+
+    </tr>
+             {% endfor %}
+    </tbody>
+
+     </table></center>
 
 {% endblock %}

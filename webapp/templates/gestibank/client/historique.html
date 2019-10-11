@@ -8,7 +8,7 @@
     {%if col=='rib' or col=='solde' or col=='type_compte'%}
 
 
-   <div id="lig"> <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{col}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th></div>
+   <div id="lig"> <th><center>{{col}}</center></th></div>
     {%endif%}
     {% endfor %}
     </thead>
@@ -20,7 +20,7 @@
         {%for key,value in compte.items()%}
             {%if key=='rib' or key=='solde' or key=='type_compte'%}
 
-                        {{value}}
+                      <center>  {{value}} </center>
             {%endif%}
 
             {% endfor %}</button></div>
