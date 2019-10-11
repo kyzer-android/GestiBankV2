@@ -17,19 +17,17 @@ class TypeCompte(enum.Enum):
 #Class compte definissant un compte bancaire générique qui sera hérité par les different type de compte
 
 class Comptes(db.Model):
+    __tablename__ = 'compte'
     id_compte = db.Column(db.String(50), primary_key=True)
     id_client = db.Column(db.String(50), db.ForeignKey('client.id'))
     type_compte = db.Column(db.Enum(TypeCompte))
-    rib = db.Column(db.String(50))
+    rib = db.Column(db.String(50),unique=True)
     solde = db.Column(db.Float(20))
     date_creation = db.Column(db.Date)
 
-    __mapper_args__ = {
-        'polymorphic_identity': 'comptes',
-    }
+
     @classmethod
     def creation_compteban(cls, client):
-            # client = User.query.get(id_client)
             if client is not None:
                 this_comtpe=Comptes(
                 id_compte = (random.randint(1000000000, 9999999999)),
@@ -72,3 +70,4 @@ class Comptes(db.Model):
             flash('Votre Solde Actuel =  ' + str(self.solde) + ' € ')
 
             return self.solde
+

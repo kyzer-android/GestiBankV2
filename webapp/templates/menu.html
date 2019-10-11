@@ -26,6 +26,7 @@ function LangueFonction(value) {
         {% endif %}
         {% block css %}{% endblock %}
         <link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/style.css')}}" >
+
     </head>
 
     Microdsqblog:
@@ -42,9 +43,9 @@ function LangueFonction(value) {
             <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.agent",param=1)}}'>{{_('Gestion des Clients')}}</a></div>
         <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.agent",param=2)}}'>{{_('Gestion des Demandes')}}</a></div>
         {%endif%} {% if current_user.type=='client' %}
-            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=1)}}'>{{_('comptes')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=2)}}'>{{_('virement')}}</a></div>
-          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.client",param=3)}}'>{{_('Other')}}</a></div>
+            <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.liste_compte")}}'>{{_('comptes')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.compte_virement")}}'>{{_('virement')}}</a></div>
+          <div class="ligne" style=";border-color:blue">  <a href='{{url_for("gestibank.historique")}}'>{{_('Operation')}}</a></div>
         {%endif%}
 
     </div>
