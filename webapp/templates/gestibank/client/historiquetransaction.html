@@ -1,29 +1,27 @@
 {% extends "gestibank/client/index.html" %}
     {%block transationaction%}
-        <center>
-    <table>
-    <thead>
-    {%for col in list_param%}
-   <div id="lig"> <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{col}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th></div>
-    {% endfor %}
-   </thead>
-    <tbody>
-        {%for trans in transaction %}
-        <tr>
-            {%for value in trans.values() %}
-             <td>
-                <center>
-                         {{value}}
-                </center>
-            </td>
+<body class="text-center">
+    <table class="table table-hover table-bordered" id="general">
+        <thead class="thead-light">
+            <tr>
+                {%for col in list_param%}
+                   <th scope="col" class="celule">{{col}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {%for trans in transaction %}
+                <tr>
+                    {%for value in trans.values() %}
+                         <td>{{value}}</td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
+        </tbody>
+    </table>
+        <tr>
+            <td><img src="{{url_for( 'static', filename=path)}}"></td>
         </tr>
-        {% endfor %}
-    </tbody>
-     </table></center>
-    <tr><center>
-        <td><center><img src="{{url_for( 'static', filename=path)}}"></center></td></center>
-    </tr>
 
-
+</body>
 {% endblock %}

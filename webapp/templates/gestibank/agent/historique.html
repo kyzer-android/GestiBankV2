@@ -7,15 +7,17 @@
             <thead class="thead-light">
                 <tr>
                     {% for key in list_param %}
-                        <th scope="col" class="celule">{{key}}</th>
+                        {%if key != 'id_compte' and key != 'affect' %}
+                            <th scope="col" class="celule">{{key}}</th>{%endif%}
                     {% endfor %}
                 </tr>
             </thead>
             <tbody>
                 {% for dict_item in list_dict %}
                     <tr>
-                        {% for value in dict_item.values() %}
-                            <td>{{value}}</td>
+                        {% for key,value in dict_item.items() %}
+                            {%if key != 'id_compte' and key != 'affect' %}
+                                <td>{{value}}</td>{%endif%}
                         {% endfor%}
                     </tr>
                 {% endfor%}

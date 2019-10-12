@@ -1,35 +1,29 @@
  {% extends "gestibank/client/index.html" %}
 {%block clientaction%}
 <h1><center>Historique de comptes </center></h1>
-        <center>
-    <table>
-    <thead>
-    {%for col in keys%}
-    {%if col=='rib' or col=='solde' or col=='type_compte'%}
-
-
-   <div id="lig"> <th><center>{{col}}</center></th></div>
-    {%endif%}
-    {% endfor %}
-    </thead>
-    <tbody>
-    {%for compte in cl %}
-    <tr>
-        <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.operation', id_compte=compte['id_compte'])}}';">
-
-        {%for key,value in compte.items()%}
-            {%if key=='rib' or key=='solde' or key=='type_compte'%}
-
-                      <center>  {{value}} </center>
-            {%endif%}
-
-            {% endfor %}</button></div>
-
-    </tr>
-             {% endfor %}
-    </tbody>
-
-     </table></center>
+    <table class="table table-hover table-bordered" id="general">
+            <thead class="thead-light">
+            <tr>
+                {%for col in keys%}
+                    {%if col=='rib' or col=='solde' or col=='type_compte'%}
+                        <th scope="col" class="celule">{{col}}</th>
+                    {%endif%}
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {%for compte in cl %}
+                <tr>
+                    {%for key,value in compte.items()%}
+                        {%if key=='rib' or key=='solde' or key=='type_compte'%}
+                            <td>{{value}}</td>
+                        {%endif%}
+                    {% endfor %}
+                    <td><button class="btn btn-outline-warning" onclick="window.location.href='{{url_for('gestibank.operation', id_compte=compte['id_compte'])}}';">Voir</button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 
 

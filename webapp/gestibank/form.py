@@ -64,7 +64,7 @@ class ValidedemandFrom(FlaskForm):
 
 class AffectdemandFrom(FlaskForm):
 
-    affect = SelectField(u'Programming Language')
+    affect = SelectField('Agent à affecter')
     submit = SubmitField(_l('Send'))
 class ChiquedemandFrom(FlaskForm):
     valide = RadioField("Valide", choices=[('True', 'Validation'),('False', 'En attente'),('None', 'Ne rien faire')])

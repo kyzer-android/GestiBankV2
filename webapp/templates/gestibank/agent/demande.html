@@ -9,7 +9,8 @@
             <thead class="thead-light">
                 <tr>
                     {% for key in list_param %}
-                        <th scope="col" class="celule">{{key}}</th>
+                    {%if key != 'id_compte' and key != 'affect' %}
+                        <th scope="col" class="celule">{{key}}</th>{%endif%}
                     {% endfor %}
                         <th scope="col" class="celule">Modifier</th>
                 </tr>
@@ -17,8 +18,9 @@
             <tbody>
                     {% for dict_item in list_dict %}
                         <tr>
-                            {% for value in dict_item.values() %}
-                                <td>{{value}}</td>
+                            {% for key,value in dict_item.items() %}
+                                 {%if key != 'id_compte' and key != 'affect' %}
+                                <td>{{value}}</td>{%endif%}
                             {% endfor%}
                             <td><button class="btn btn-outline-warning" onclick="window.location.href='{{url_for('gestibank.valid_demandcrea',option=dict_item['id_compte'])}}';">OK</button></td>
                         </tr>

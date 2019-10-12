@@ -1,7 +1,9 @@
 {% extends "gestibank/client/index.html" %}
 {%block action%}
-<h1><center>Operation Virement </center></h1>
-        <center>
+<br>
+<br>
+<h1>Operation Virement </h1>
+<body class="text-center">
      <form action='' method="post" >
         {{form.hidden_tag()}}
         <p>
@@ -41,7 +43,8 @@
         </p>
 
 
-        <p>{{form.submit()}}</p>
+         <p>{{form.submit(class="btn btn-lg btn-primary")}}</p>
 
-    </form></center>
+    </form>
+</body>
 {% endblock %}

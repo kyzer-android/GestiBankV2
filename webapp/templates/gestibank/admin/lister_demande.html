@@ -1,25 +1,24 @@
 {% extends "gestibank/admin/index.html" %}
 
 {%block adminaction%}
-     <div id="general">
-        <tr class="tableau">
-           <tr><div class="titre">
-                     {% for key in list_param %}
-                       <td class="celule">{{key}}</td>
-                     {% endfor %}
-           </div>
+     <table class="table table-hover table-bordered" id="general">
+        <thead class="thead-light">
+           <tr>
+               {% for key in list_param %}
+               <th scope="col" class="celule">{{key}}</th>
+               {% endfor %}
            </tr>
-
-         {% for dict_item in list_dict %}
-         <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.affect_demandcrea',optionadmin=dict_item['id_compte'])}}';">
-
-             {% for value in dict_item.values() %}
-                      {{value}}
-                    {% endfor %}</button></div>
-              {% endfor %}
-
-
-        </div>
-     </div>
+        </thead>
+        <tbody>
+             {% for dict_item in list_dict %}
+                <tr>
+                    {% for value in dict_item.values() %}
+                        <td>{{value}}</td>
+                    {% endfor %}
+                    <td><button class="btn btn-outline-warning" onclick="window.location.href='{{url_for('gestibank.affect_demandcrea',optionadmin=dict_item['id_compte'])}}';">Affecter</button></td>
+                </tr>
+             {% endfor %}
+        </tbody>
+     </table>
 
 {% endblock %}

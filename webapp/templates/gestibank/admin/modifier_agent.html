@@ -1,26 +1,25 @@
 {% extends "gestibank/admin/index.html" %}
 
 {%block adminaction%}
-<H1>Liste des Agents</H1>
-     <div id="general">
-        <tr class="tableau">
-           <tr><div class="titre">
-                     {% for key in list_param %}
-                       <td class="celule">{{key}}</td>
-                     {% endfor %}
-           </div>
+<H1 class="text-center">Liste des Agents</H1>
+     <table class="table table-hover table-bordered" id="general">
+        <thead class="thead-light">
+            <tr>
+            {% for key in list_param %}
+                <th scope="col" class="celule">{{key}}</th>
+            {% endfor %}
            </tr>
-
-         {% for dict_item in list_dict %}
-         <div id="ligne"><button id="mybutton" onclick="window.location.href='{{url_for('gestibank.modif_agent',parametre=dict_item['id'])}}';">
-
+        </thead>
+        <tbody>
+            {% for dict_item in list_dict %}
+                <tr>
              {% for value in dict_item.values() %}
-                      {{value}}
-                    {% endfor %}</button></div>
+                    <td>{{value}}</td>
+                    {% endfor %}
+                    <td><button class="btn btn-outline-warning" onclick="window.location.href='{{url_for('gestibank.modif_agent',parametre=dict_item['id'])}}';">Voir</button></td>
+                </tr>
               {% endfor %}
-
-
-        </div>
-     </div>
+            </tbody>
+     </table>
 
 {% endblock %}

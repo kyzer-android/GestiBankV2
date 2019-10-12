@@ -3,41 +3,50 @@
 {%block agentaction%}
 
 {%for i in increment%}
-  <center> <tr>
-       {%for col in keys[i]%}
-            {%if col=='rib' or col=='solde' or col=='type_compte'%}
-                <td>{{col}}</td>
-            {%endif%}
-        {% endfor %}
-    </tr><br>
-    <tr>
-        {%for key,value in dict_liste_compte[i].items()%}
-            {%if key=='rib' or key=='solde' or key=='type_compte'%}
-               <td> {{value}}</td>
-            {%endif%}
-        {% endfor %}
-    </tr><br>
- <tr>
-       {%for col in list_param[i]%}
-            {%if col != 'id_operation' %}
-                <td>{{col}}</td>
-            {%endif%}
-        {% endfor %}
-    </tr><br>
+  <center>
+      <table class="table table-hover table-bordered text-center" id="general" style="size: 50%;">
+          <thead class="thead-light">
+                <tr>
+                   {%for col in keys[i]%}
+                        {%if col=='rib' or col=='solde' or col=='type_compte'%}
+                            <th scope="col" class="celule">{{col}}</th>
+                        {%endif%}
+                    {% endfor %}
+                </tr>
+          </thead>
+          <tbody>
+            <tr>
+                {%for key,value in dict_liste_compte[i].items()%}
+                    {%if key=='rib' or key=='solde' or key=='type_compte'%}
+                        <td>{{value}}</td>
+                    {%endif%}
+                {% endfor %}
+            </tr>
+          </tbody>
+      </table>
 
-
-        {%for trans in list_transaction[i] %}
-        <tr>
-            {%for key,value in trans.items() %}
-            {%if col != 'id_operation' %}
-             <td>
-                {{value}}
-            </td>
-             {%endif%}
-            {% endfor %}
-        </tr><br>
-        {% endfor %}
-
+     <table class="table table-hover table-bordered text-center" id="general" style="size: 50%;">
+             <thead class="thead-light">
+                <tr>
+                   {%for col in list_param[i]%}
+                        {%if col != 'id_operation' %}
+                            <th scope="col" class="celule">{{col}}</th>
+                        {%endif%}
+                    {% endfor %}
+                </tr>
+             </thead>
+              <tbody>
+                {%for trans in list_transaction[i] %}
+                    <tr>
+                        {%for key,value in trans.items() %}
+                            {%if key != 'id_operation' %}
+                                <td>{{value}}</td>
+                            {%endif%}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+              </tbody>
+          </table>
 
     <tr>
         <td><img src="{{url_for( 'static', filename=list_path[i])}}"></td>

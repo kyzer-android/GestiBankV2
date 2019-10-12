@@ -2,6 +2,9 @@
 
    {%block adminaction%}
 
+<body class="text-center" >
+<br>
+<br>
     <h1>Creation Agent</h1>
     <form action='' method="post" >
         {{form.hidden_tag()}}
@@ -42,7 +45,8 @@
             {% endfor %}
         </p>
 
-        <p>{{form.submit()}}</p>
+        <p>{{form.submit(class="btn btn-lg btn-primary")}}</p>
 
     </form>
+</body>
 {% endblock %}

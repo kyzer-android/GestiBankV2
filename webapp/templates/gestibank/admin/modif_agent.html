@@ -1,6 +1,7 @@
 {% extends "gestibank/admin/index.html" %}
 
 {%block agentmodifform%}
+<body class="text-center">
           <h1>Modifier Agent</h1>
     <form action='' method="post" >
         {{form.hidden_tag()}}
@@ -50,7 +51,8 @@
             {% endfor %}
         </p>
 
-        <p>{{form.submit()}}</p>
+        <p>{{form.submit(class="btn btn-lg btn-primary")}}</p>
 
     </form>
+</body>
 {% endblock %}
