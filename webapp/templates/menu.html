@@ -89,17 +89,12 @@
                     </form>
                     {%endif%}
 
-
-                    <div id="langue">
-                        <label for="pet-select">{{_('Choose a Language')}}:</label>
-
-                        <select id="pet-select" onchange="LangueFonction(value)">
-                            <option value="">{{_('--Please choose an option--')}}</option>
+                        <select class="custom-select"  style="width: 220px;" id="pet-select" onchange="LangueFonction(value)">
+                            <option selected value="">{{_('--Choose a Language--')}}</option>
                             <option value="fr">{{_('french')}}</option>
                             <option value="en">{{_('English')}}</option>
                             <option value="de">{{_('Deutch')}}</option>
                         </select>
-                    </div>
                 </div>
             </nav>
         {% with messages = get_flashed_messages() %}
