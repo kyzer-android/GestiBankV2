@@ -13,10 +13,10 @@
             <title>{{_('Welcome to GestiBank')}}</title>
         {% endif %}
         {% block css %}{% endblock %}
-        <link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/style.css')}}" >
+
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
         <link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/bootstrap/css/bootstrap.min.css')}}" >
-
+        <link rel="stylesheet" type="text/css" href="{{url_for( 'static', filename='style/style.css')}}" >
         {% block scripts %}{% endblock %}
         <script type="text/javascript" src="{{url_for('static', filename='style/bootstrap/js/bootstrap.min.js')}}"></script>
         <script>
@@ -78,23 +78,31 @@
                             <a class="nav-link" href='{{url_for("gestibank.historique")}}'>{{_('Operation')}}<span class="sr-only">(current)</span></a>
                         </li>
                         {%endif%}
-                    </ul>
-                    {% if current_user.is_anonymous %}
-                    <form class="form-inline my-2 my-lg-0 " action='{{url_for("auth.login")}}'>
-                        <button style="position: absolute; right: 0;" class="btn btn-outline-warning my-2 my-sm-0" >{{_('Connection')}}</button>
-                    </form>
-                    {% else %}
-                    <form class="form-inline my-2 my-lg-0 " action='{{url_for("auth.logout")}}'>
-                        <button style="position: absolute; right: 0;" class="btn btn-outline-warning my-2 my-sm-0" >{{_('Disconnect')}}</button>
-                    </form>
-                    {%endif%}
 
+
+                    </ul>
+                    <div >
+
+                    <div  style="position: absolute; right: 20px; bottom :10px">
+                        {% if current_user.is_anonymous %}
+                            <button  class="btn btn-outline-warning my-2 my-sm-0" onclick="window.location.href='{{url_for('auth.login')}}';">{{_('Connection')}}</button>
+                        {% else %}
+                            <button  class="btn btn-outline-warning my-2 my-sm-0" onclick="window.location.href='{{url_for('auth.logout')}}';">{{_('Disconnect')}}</button>
+                        {%endif%}
+
+                    </div>
+
+
+
+                    <div style="position: absolute; right: 145px;  bottom :10px;">
                         <select class="custom-select"  style="width: 220px;" id="pet-select" onchange="LangueFonction(value)">
                             <option selected value="">{{_('--Choose a Language--')}}</option>
                             <option value="fr">{{_('french')}}</option>
                             <option value="en">{{_('English')}}</option>
                             <option value="de">{{_('Deutch')}}</option>
                         </select>
+                    </div>
+                </div>
                 </div>
             </nav>
         {% with messages = get_flashed_messages() %}

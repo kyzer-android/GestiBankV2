@@ -10,7 +10,7 @@ from webapp.auth import bp
 
 # Page de login renvoi l'utilisateur sur sa page d'index en fonction du type 'utilisateur
 
-@bp.route('/login', methods=['get', 'post'])
+@bp.route('/login', methods=['GET','POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
@@ -38,7 +38,7 @@ def logout():
     return redirect(url_for('main.index'))
 
 # Page de réinitialisation de password qui renvoi un token par mail pour réinit le password
-@bp.route('/reset_password_req', methods=['GET', 'POST'])
+@bp.route('/reset_password_req', methods=['GET','POST'])
 def reset_password_request():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))

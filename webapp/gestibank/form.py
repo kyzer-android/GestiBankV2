@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, Email, Length, Optional, EqualTo
 
 #Formulaire de demande de creation de compte utilisateur
 class InscriptionForm(FlaskForm):
-    username = StringField(_l("Connexion identifier"),validators=[Length(min=8, max=25)])
+    username = StringField(_l("Connection identifier"),validators=[Length(min=8, max=25)])
     password = PasswordField(_l("password"), validators=[Length(min=8, max=25)])
     test = PasswordField(_l('Password Confirmation'),validators=[DataRequired(), EqualTo('password')])
     nom = StringField(_l("FirstName"), validators=[DataRequired()])
