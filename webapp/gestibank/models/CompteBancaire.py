@@ -114,6 +114,6 @@ class Comptes(db.Model):
         plt.plot(liste_date_transaction, list_transaction)
         plt.xlabel('date')
         plt.ylabel('solde')
-        chemin= os.path.join(current_app.chemin+"\static\img\img_compte\\",self.id_compte+".png")
+        chemin= os.path.join(current_app.chemin+"/static/img/img_compte/",self.id_compte+".png")
         plt.savefig(chemin)
         return(chemin)
