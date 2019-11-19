@@ -35,7 +35,7 @@ class Transaction(db.Model):
     @classmethod
     def lister_transaction(cls,id_compte):
         clients = db.session.query(Transaction).filter(Transaction.id_compte == id_compte).all()
-        list_transaction=[]
+        list_transaction=[{},]
         for demande in clients:
             list_transaction.append(demande.todict())
         return list_transaction
